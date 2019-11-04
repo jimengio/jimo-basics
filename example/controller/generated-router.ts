@@ -2,7 +2,7 @@ import queryString from "query-string";
 
 type Id = string;
 
-function switchPath(x: string) {
+export function switchPath(x: string) {
   location.hash = `#${x}`;
 }
 
@@ -21,17 +21,23 @@ export let genRouter = {
     path: () => `/home`,
     go: () => switchPath(`/home`),
   },
-  content: {
-    name: "content",
-    raw: "content",
-    path: () => `/content`,
-    go: () => switchPath(`/content`),
+  buttons: {
+    name: "buttons",
+    raw: "buttons",
+    path: () => `/buttons`,
+    go: () => switchPath(`/buttons`),
   },
-  else: {
-    name: "else",
-    raw: "else",
-    path: () => `/else`,
-    go: () => switchPath(`/else`),
+  tabs: {
+    name: "tabs",
+    raw: "tabs",
+    path: () => `/tabs`,
+    go: () => switchPath(`/tabs`),
+  },
+  todo: {
+    name: "todo",
+    raw: "todo",
+    path: () => `/todo`,
+    go: () => switchPath(`/todo`),
   },
   $: {
     name: "home",
@@ -41,7 +47,12 @@ export let genRouter = {
   },
 };
 
-export type GenRouterTypeMain = GenRouterTypeTree["home"] | GenRouterTypeTree["content"] | GenRouterTypeTree["else"] | GenRouterTypeTree["$"];
+export type GenRouterTypeMain =
+  | GenRouterTypeTree["home"]
+  | GenRouterTypeTree["buttons"]
+  | GenRouterTypeTree["tabs"]
+  | GenRouterTypeTree["todo"]
+  | GenRouterTypeTree["$"];
 
 export interface GenRouterTypeTree {
   home: {
@@ -50,14 +61,20 @@ export interface GenRouterTypeTree {
     query: {};
     next: null;
   };
-  content: {
-    name: "content";
+  buttons: {
+    name: "buttons";
     params: {};
     query: {};
     next: null;
   };
-  else: {
-    name: "else";
+  tabs: {
+    name: "tabs";
+    params: {};
+    query: {};
+    next: null;
+  };
+  todo: {
+    name: "todo";
     params: {};
     query: {};
     next: null;

@@ -1,27 +1,41 @@
-## Workflow
+## Jimo Basics
 
-> A project template based on TypeScript, React, immer, emotion, rex, ruled-router...
+> Very basic UI components.
+
+http://fe.jimu.io/jimo-basics/
 
 ### Usage
 
-Dev:
+![](https://img.shields.io/npm/v/@jimengio/jimo-basics.svg?style=flat-square)
 
 ```bash
-yarn dll
-yarn dev
+yarn add @jimengio/jimo-basics
 ```
 
-Compile library:
+Button:
 
-```bash
-yarn compile
+```tsx
+<JimoButton prepend={`+`} text={"DEMO"} fillColor onClick={() => {}} />
 ```
 
-Release:
+Tabs:
 
-```bash
-yarn release
-# yarn serve
+```tsx
+let items: IJimoTabItem[] = [{ title: "A", value: "a" }, { title: "This is b", value: "b" }];
+
+<JimoTabs
+  items={items}
+  value={tab}
+  onClick={(value) => {
+    setTab(value.value);
+  }}
+/>;
+```
+
+Todo page component:
+
+```tsx
+<TodoFeature title="A not finished feature" description={"Some description"} />
 ```
 
 ### Workflow

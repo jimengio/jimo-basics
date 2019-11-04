@@ -1,27 +1,54 @@
 import React, { FC } from "react";
-import { css } from "emotion";
+import { css, cx } from "emotion";
 
-import Home from "./home";
-import Content from "./content";
-import { HashRedirect } from "@jimengio/ruled-router/lib/dom";
+import { HashRedirect, findRouteTarget } from "@jimengio/ruled-router/lib/dom";
 import { genRouter, GenRouterTypeMain } from "controller/generated-router";
+import { DocSidebar, ISidebarEntry } from "@jimengio/doc-frame";
+import { fullscreen, row } from "@jimengio/flex-styles";
+import DemoButtons from "./demo/buttons";
+import DemoTodo from "./demo/todo";
+import DemoTabs from "./demo/tabs";
+
+let items: ISidebarEntry[] = [
+  {
+    title: "Buttons",
+    path: genRouter.buttons.name,
+  },
+  {
+    title: "Tabs",
+    path: genRouter.tabs.name,
+  },
+  {
+    title: "Todo page",
+    path: genRouter.todo.name,
+  },
+];
 
 const renderChildPage = (routerTree: GenRouterTypeMain) => {
   if (routerTree != null) {
     switch (routerTree.name) {
-      case "home":
-        return <Home />;
-      case "content":
-        return <Content />;
+      case "buttons":
+        return <DemoButtons />;
+      case "todo":
+        return <DemoTodo />;
+      case "tabs":
+        return <DemoTabs />;
       default:
         return (
-          <HashRedirect to={genRouter.home.name} delay={2}>
+          <HashRedirect to={genRouter.buttons.name} delay={2}>
             2s to redirect
           </HashRedirect>
         );
     }
   }
   return <div>NOTHING</div>;
+};
+
+let onSwitchPage = (path: string) => {
+  let target = findRouteTarget(genRouter, path);
+  if (target != null) {
+    target.go();
+  }
 };
 
 let Container: FC<{
@@ -31,9 +58,17 @@ let Container: FC<{
   /** Effects */
   /** Renderers */
   return (
-    <div className={styleContainer}>
-      <div className={styleTitle}>Container</div>
-      {renderChildPage(props.router)}
+    <div className={cx(fullscreen, row, styleContainer)}>
+      <DocSidebar
+        title="Jimo Basics"
+        currentPath={props.router.name}
+        onSwitch={(item) => {
+          onSwitchPage(item.path);
+        }}
+        items={items}
+      />
+
+      <div className={styleBody}>{renderChildPage(props.router)}</div>
     </div>
   );
 });
@@ -42,6 +77,6 @@ export default Container;
 
 const styleContainer = css``;
 
-const styleTitle = css`
-  margin-bottom: 16px;
+let styleBody = css`
+  padding: 16px;
 `;
