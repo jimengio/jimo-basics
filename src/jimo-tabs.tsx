@@ -22,9 +22,18 @@ let JimoTabs: FC<{
   /** Renderers */
   return (
     <div className={styleTabs}>
-      {props.items.map((item) => {
+      {props.items.map((item, idx) => {
         return (
-          <div key={item.key || item.title} onClick={() => props.onClick(item)} className={cx(styleTab, props.value === item.value ? styleSelected : null)}>
+          <div
+            key={item.key || item.title}
+            onClick={() => props.onClick(item)}
+            className={cx(
+              styleTab,
+              props.value === item.value ? styleSelected : null,
+              idx === 0 ? styleFirstTab : null,
+              idx === props.items.length - 1 ? styleLastTab : null
+            )}
+          >
             {item.title}
           </div>
         );
@@ -40,62 +49,38 @@ let styleTabs = css`
 `;
 
 let styleTab = css`
+  transition-duration: 240ms;
   min-width: 72px;
   line-height: 26px;
-  border-radius: 1px 0px 0px 1px;
   border: 1px solid rgba(232, 232, 232, 1);
+  border-right: none;
   text-align: center;
-  padding: 0 8px;
+  padding: 0 12px;
   color: hsla(0, 0%, 44%, 1);
   cursor: pointer;
+
+  :hover {
+    background-color: hsla(0, 0%, 98%, 1);
+  }
 `;
 
 let styleSelected = css`
   background-color: ${themeColor};
+  border-color: ${themeColor};
   color: white;
+
+  :hover {
+    background-color: ${themeColor};
+  }
 `;
 
-/** 自定义 Tabs 组件, 选中时下划线颜色高亮 */
-export let UnderlineTabs: FC<{
-  // 有需求的话可以支持更多的类型
-  value: string;
-  items: IJimoTabItem[];
-  onClick: (value: IJimoTabItem) => void;
-}> = React.memo((props) => {
-  /** Methods */
-  /** Effects */
-  /** Renderers */
-  return (
-    <div className={cx(row, styleUnderlineTabs)}>
-      {props.items.map((item) => {
-        return (
-          <div
-            key={item.key || item.title}
-            onClick={() => props.onClick(item)}
-            className={cx(styleUnderlineTab, props.value === item.value ? styleSelectedUnderline : null)}
-          >
-            {item.title}
-          </div>
-        );
-      })}
-    </div>
-  );
-});
-
-let styleUnderlineTabs = css`
-  padding: 0px 16px;
-  margin: 8px 0;
-  border-bottom: 1px solid rgba(232, 232, 232, 1);
+let styleFirstTab = css`
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 `;
 
-let styleUnderlineTab = css`
-  color: ${themeColor};
-  border: 2px solid white;
-  margin-right: 16px;
-  cursor: pointer;
-  line-height: 28px;
-`;
-
-let styleSelectedUnderline = css`
-  border-bottom: 2px solid ${themeColor};
+let styleLastTab = css`
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-right: 1px solid rgba(232, 232, 232, 1);
 `;

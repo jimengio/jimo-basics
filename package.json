@@ -1,6 +1,6 @@
 {
   "name": "@jimengio/jimo-basics",
-  "version": "0.0.1-a1",
+  "version": "0.0.1-a2",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "@jimengio/ci-progress-webpack-plugin": "^0.1.0",
-    "@jimengio/doc-frame": "^0.1.3",
+    "@jimengio/doc-frame": "^0.1.5-a2",
     "@jimengio/flex-styles": "^0.1.6",
     "@jimengio/router-code-generator": "^0.2.4-a4",
     "@jimengio/ruled-router": "^0.2.16",
