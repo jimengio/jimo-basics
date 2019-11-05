@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { css, cx } from "emotion";
 import { row } from "@jimengio/flex-styles";
-import { IJimoTabItem } from "../lib/jimo-tabs";
+import { IJimoTabItem } from "./jimo-tabs";
 
 let themeColor = "hsl(222, 94%, 38%)";
 

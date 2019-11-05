@@ -1,6 +1,6 @@
 {
   "name": "@jimengio/jimo-basics",
-  "version": "0.0.1-a3",
+  "version": "0.0.1-a4",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -11,9 +11,10 @@
     "release": "rm -rfv dist/* && yarn dll-release && time webpack --config webpack/release.js",
     "build": "yarn release",
     "serve": "http-server dist/ -s",
-    "compile": "tsc -d --project tsconfig-compile.json --outDir lib/",
+    "compile": "rm -rfv lib/* && tsc -d --project tsconfig-compile.json --outDir lib/",
     "upload": "rsync -avr --progress dist/ fe.jimu.io:~/repo/jimengio/jimo-basics",
     "gen-router": "ts-node -P tsconfig-node.json -r tsconfig-paths/register example/gen-router.ts",
+    "prepare": "yarn compile",
     "postinstall": "rm -rfv node_modules/@types/*/node_modules/@types/react"
   },
   "keywords": [],
