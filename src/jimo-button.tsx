@@ -37,16 +37,25 @@ const styleButton = css`
   border-radius: 1px;
   cursor: pointer;
   vertical-align: middle;
-  transition-duration: 200ms;
+  transition-duration: 240ms;
   user-select: none;
 
   &:active {
     transform: scale(1.04);
     transition-duration: 0ms;
   }
+
+  :hover {
+    background-color: hsla(0, 0%, 98%, 1);
+    box-shadow: 1px 1px 3px hsla(0, 0%, 0%, 0.1);
+  }
 `;
 
 let styleFilled = css`
   background-color: ${themeColor};
   color: white;
+
+  :hover {
+    background-color: ${themeColor};
+  }
 `;
