@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { css, cx } from "emotion";
 import { row } from "@jimengio/flex-styles";
 
-let themeColor = "hsl(222, 94%, 38%)";
+let themeColor = "hsla(221, 100%, 61%, 1)";
 
 export interface IJimoTabItem {
   key?: string;
