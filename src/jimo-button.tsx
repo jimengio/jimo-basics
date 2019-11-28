@@ -3,16 +3,27 @@ import { css, cx } from "emotion";
 import { rowCenter } from "@jimengio/flex-styles";
 import { Space } from "@jimengio/flex-styles";
 
-let themeColor = "hsl(222, 94%, 38%)";
+let themeColor = "hsla(221, 100%, 61%, 1)";
 
-let JimoButton: FC<{ prepend?: ReactNode; text: string; className?: string; fillColor?: boolean; onClick: () => void }> = React.memo((props) => {
+let JimoButton: FC<{
+  prepend?: ReactNode;
+  text: string;
+  className?: string;
+  fillColor?: boolean;
+  /** special style for cancel button, with very shallow border color */
+  canceling?: boolean;
+  onClick: () => void;
+}> = React.memo((props) => {
   /** Methods */
   /** Effects */
   /** Renderers */
   let hasPrepend = props.prepend != null;
 
   return (
-    <div className={cx(rowCenter, styleButton, props.className, props.fillColor ? styleFilled : null)} onClick={props.onClick}>
+    <div
+      className={cx(rowCenter, styleButton, props.className, props.fillColor ? styleFilled : null, props.canceling ? styleCanceling : null)}
+      onClick={props.onClick}
+    >
       {hasPrepend ? (
         <>
           {props.prepend}
@@ -34,11 +45,12 @@ const styleButton = css`
   padding: 0 16px;
   color: ${themeColor};
   border: 1px solid ${themeColor};
-  border-radius: 1px;
+  border-radius: 2px;
   cursor: pointer;
   vertical-align: middle;
   transition-duration: 240ms;
   user-select: none;
+  font-size: 14px;
 
   &:active {
     transform: scale(1.04);
@@ -58,4 +70,9 @@ let styleFilled = css`
   :hover {
     background-color: ${themeColor};
   }
+`;
+
+let styleCanceling = css`
+  border-radius: 2px;
+  border: 1px solid rgba(217, 217, 217, 1);
 `;
