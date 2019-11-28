@@ -3,7 +3,7 @@ import { css, cx } from "emotion";
 import { row } from "@jimengio/flex-styles";
 import { IJimoTabItem } from "./jimo-tabs";
 
-let themeColor = "hsl(222, 94%, 38%)";
+let themeColor = "hsla(221, 100%, 61%, 1)";
 
 /** 自定义 Tabs 组件, 选中时下划线颜色高亮 */
 export let UnderlineTabs: FC<{

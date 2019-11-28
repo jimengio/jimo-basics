@@ -16,6 +16,10 @@ let codePrepend = `
 <JimoButton prepend={"+"} text={"DEMO"} fillColor onClick={() => {}} />
 `;
 
+let codeCanceling = `
+<JimoButton text={"Cancel"} canceling onClick={() => {}} />
+`;
+
 let DemoButtons: FC<{}> = React.memo((props) => {
   /** Methods */
   /** Effects */
@@ -30,6 +34,11 @@ let DemoButtons: FC<{}> = React.memo((props) => {
       <DocDemo title={"Filled color"} link={getLink("buttons.tsx")} className={styleDemo}>
         <DocSnippet code={codeFilled} />
         <JimoButton text={"DEMO"} fillColor onClick={() => {}} />
+      </DocDemo>
+
+      <DocDemo title={"Cancel style"} link={getLink("buttons.tsx")} className={styleDemo}>
+        <DocSnippet code={codeCanceling} />
+        <JimoButton text={"Cancel"} canceling onClick={() => {}} />
       </DocDemo>
 
       <DocDemo title={"Prepend something(probably icons)"} link={getLink("buttons.tsx")} className={styleDemo}>
