@@ -74,5 +74,6 @@ let styleFilled = css`
 
 let styleCanceling = css`
   border-radius: 2px;
+  color: hsla(0, 0%, 0%, 0.65);
   border: 1px solid rgba(217, 217, 217, 1);
 `;
