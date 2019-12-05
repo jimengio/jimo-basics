@@ -3,9 +3,12 @@ import { css } from "emotion";
 import { DocDemo, DocBlock, DocSnippet } from "@jimengio/doc-frame";
 import { getLink } from "../../util/link";
 import JimoButton from "../../../src/jimo-button";
+import { Space } from "@jimengio/flex-styles";
 
 let codeButton = `
 <JimoButton text={"DEMO"} onClick={() => {}} />
+
+<JimoButton text={"DEMO"} disabled onClick={() => {}} />
 `;
 
 let codeFilled = `
@@ -28,22 +31,36 @@ let DemoButtons: FC<{}> = React.memo((props) => {
     <div>
       <DocDemo title={"Basic button"} link={getLink("buttons.tsx")} className={styleDemo}>
         <DocSnippet code={codeButton} />
-        <JimoButton text={"DEMO"} onClick={() => {}} />
+        <div>
+          <JimoButton text={"DEMO"} onClick={() => {}} />
+          <Space width={8} />
+          <JimoButton text={"DEMO"} onClick={() => {}} disabled />
+        </div>
       </DocDemo>
 
       <DocDemo title={"Filled color"} link={getLink("buttons.tsx")} className={styleDemo}>
         <DocSnippet code={codeFilled} />
-        <JimoButton text={"DEMO"} fillColor onClick={() => {}} />
+        <div>
+          <JimoButton text={"DEMO"} fillColor onClick={() => {}} />
+          <Space width={8} />
+          <JimoButton text={"DEMO"} fillColor onClick={() => {}} disabled />
+        </div>
       </DocDemo>
 
       <DocDemo title={"Cancel style"} link={getLink("buttons.tsx")} className={styleDemo}>
         <DocSnippet code={codeCanceling} />
-        <JimoButton text={"Cancel"} canceling onClick={() => {}} />
+        <div>
+          <JimoButton text={"Cancel"} canceling onClick={() => {}} />
+          <Space width={8} />
+          <JimoButton text={"Cancel"} canceling disabled onClick={() => {}} />
+        </div>
       </DocDemo>
 
       <DocDemo title={"Prepend something(probably icons)"} link={getLink("buttons.tsx")} className={styleDemo}>
         <DocSnippet code={codePrepend} />
         <JimoButton prepend={`+`} text={"DEMO"} fillColor onClick={() => {}} />
+        <Space width={8} />
+        <JimoButton prepend={`+`} text={"Cancel"} fillColor disabled onClick={() => {}} />
       </DocDemo>
     </div>
   );
