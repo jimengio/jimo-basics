@@ -34,11 +34,7 @@ const renderChildPage = (routerTree: GenRouterTypeMain) => {
       case "tabs":
         return <DemoTabs />;
       default:
-        return (
-          <HashRedirect to={genRouter.buttons.name} delay={2}>
-            2s to redirect
-          </HashRedirect>
-        );
+        return <HashRedirect to={genRouter.buttons.name} noDelay></HashRedirect>;
     }
   }
   return <div>NOTHING</div>;
