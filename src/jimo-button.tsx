@@ -71,6 +71,10 @@ let styleFilled = css`
   background-color: ${themeColor};
   color: white;
 
+  :hover {
+    opacity: 0.7;
+  }
+
   &:active {
     background-color: #1755e0;
     color: white;
