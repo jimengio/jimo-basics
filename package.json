@@ -1,6 +1,6 @@
 {
   "name": "@jimengio/jimo-basics",
-  "version": "0.0.2",
+  "version": "0.0.3-a2",
   "description": "",
   "main": "lib/index.js",
   "scripts": {

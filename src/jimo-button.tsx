@@ -12,17 +12,32 @@ let JimoButton: FC<{
   fillColor?: boolean;
   /** special style for cancel button, with very shallow border color */
   canceling?: boolean;
-  onClick: () => void;
+  disabled?: boolean;
+  onClick: (event: React.MouseEvent<any, MouseEvent>) => void;
 }> = React.memo((props) => {
   /** Methods */
   /** Effects */
   /** Renderers */
   let hasPrepend = props.prepend != null;
+  let bordered = !props.fillColor && !props.canceling && !props.disabled;
 
   return (
     <div
-      className={cx(rowCenter, styleButton, props.className, props.fillColor ? styleFilled : null, props.canceling ? styleCanceling : null)}
-      onClick={props.onClick}
+      className={cx(
+        rowCenter,
+        styleButton,
+        props.className,
+        props.fillColor && !props.disabled ? styleFilled : null,
+        props.canceling && !props.disabled ? styleCanceling : null,
+        bordered ? styleBordered : null,
+        props.disabled ? styleDisabled : null
+      )}
+      onClick={(event) => {
+        if (props.disabled) {
+          return;
+        }
+        props.onClick(event);
+      }}
     >
       {hasPrepend ? (
         <>
@@ -38,29 +53,18 @@ let JimoButton: FC<{
 export default JimoButton;
 
 const styleButton = css`
-  min-width: 80px;
+  min-width: 76px;
   display: inline-flex;
   height: 32px;
   line-height: 32px;
-  padding: 0 16px;
+  padding: 0 24px;
   color: ${themeColor};
-  border: 1px solid ${themeColor};
   border-radius: 2px;
   cursor: pointer;
   vertical-align: middle;
   transition-duration: 240ms;
   user-select: none;
   font-size: 14px;
-
-  &:active {
-    transform: scale(1.04);
-    transition-duration: 0ms;
-  }
-
-  :hover {
-    background-color: hsla(0, 0%, 98%, 1);
-    box-shadow: 1px 1px 3px hsla(0, 0%, 0%, 0.1);
-  }
 `;
 
 let styleFilled = css`
@@ -68,7 +72,27 @@ let styleFilled = css`
   color: white;
 
   :hover {
-    background-color: ${themeColor};
+    opacity: 0.7;
+  }
+
+  &:active {
+    background-color: #1755e0;
+    color: white;
+    opacity: 1;
+  }
+`;
+
+let styleBordered = css`
+  border: 1px solid ${themeColor};
+
+  :hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    border-color: #1755e0;
+    color: #1755e0;
+    opacity: 1;
   }
 `;
 
@@ -76,4 +100,21 @@ let styleCanceling = css`
   border-radius: 2px;
   color: hsla(0, 0%, 0%, 0.65);
   border: 1px solid rgba(217, 217, 217, 1);
+
+  :hover {
+    opacity: 0.7;
+  }
+
+  :active {
+    color: hsla(0, 0%, 0%, 0.65);
+    border: 1px solid rgba(217, 217, 217, 1);
+    opacity: 1;
+  }
+`;
+
+let styleDisabled = css`
+  background-color: hsla(0, 0%, 92%, 1);
+  border-color: hsla(0, 0%, 92%, 1);
+  color: hsla(0, 0%, 59%, 1);
+  cursor: not-allowed;
 `;
