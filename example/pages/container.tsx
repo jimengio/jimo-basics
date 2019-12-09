@@ -8,6 +8,7 @@ import { fullscreen, row } from "@jimengio/flex-styles";
 import DemoButtons from "./demo/buttons";
 import DemoTodo from "./demo/todo";
 import DemoTabs from "./demo/tabs";
+import DemoLoadingIndicator from "./demo/loading-indicator";
 
 let items: ISidebarEntry[] = [
   {
@@ -22,6 +23,10 @@ let items: ISidebarEntry[] = [
     title: "Todo page",
     path: genRouter.todo.name,
   },
+  {
+    title: "Loading indicator",
+    path: genRouter.loadingIndicator.name,
+  },
 ];
 
 const renderChildPage = (routerTree: GenRouterTypeMain) => {
@@ -33,6 +38,8 @@ const renderChildPage = (routerTree: GenRouterTypeMain) => {
         return <DemoTodo />;
       case "tabs":
         return <DemoTabs />;
+      case "loading-indicator":
+        return <DemoLoadingIndicator />;
       default:
         return <HashRedirect to={genRouter.buttons.name} noDelay></HashRedirect>;
     }
