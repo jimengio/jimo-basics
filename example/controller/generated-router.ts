@@ -12,7 +12,7 @@ function qsStringify(queries: { [k: string]: string }) {
 
 // generated
 
-// Generated with router-code-generator@0.2.4-a4
+// Generated with router-code-generator@0.2.5
 
 export let genRouter = {
   home: {
@@ -39,6 +39,12 @@ export let genRouter = {
     path: () => `/todo`,
     go: () => switchPath(`/todo`),
   },
+  loadingIndicator: {
+    name: "loading-indicator",
+    raw: "loading-indicator",
+    path: () => `/loading-indicator`,
+    go: () => switchPath(`/loading-indicator`),
+  },
   $: {
     name: "home",
     raw: "",
@@ -52,6 +58,7 @@ export type GenRouterTypeMain =
   | GenRouterTypeTree["buttons"]
   | GenRouterTypeTree["tabs"]
   | GenRouterTypeTree["todo"]
+  | GenRouterTypeTree["loadingIndicator"]
   | GenRouterTypeTree["$"];
 
 export interface GenRouterTypeTree {
@@ -75,6 +82,12 @@ export interface GenRouterTypeTree {
   };
   todo: {
     name: "todo";
+    params: {};
+    query: {};
+    next: null;
+  };
+  loadingIndicator: {
+    name: "loading-indicator";
     params: {};
     query: {};
     next: null;
