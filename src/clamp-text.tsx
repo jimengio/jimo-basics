@@ -39,6 +39,7 @@ let styleClampText = css`
   text-overflow: ellipsis;
 
   max-width: 100%;
+  word-break: break-word;
 `;
 
 let styleSingleLine = css`
@@ -47,4 +48,5 @@ let styleSingleLine = css`
   text-overflow: ellipsis;
 
   max-width: 100%;
+  word-break: break-word;
 `;
