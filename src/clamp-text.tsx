@@ -35,6 +35,7 @@ let styleClampText = css`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 let styleSingleLine = css`
