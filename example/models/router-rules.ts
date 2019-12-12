@@ -6,5 +6,6 @@ export const routerRules: IRouteRule[] = [
   { path: "tabs" },
   { path: "todo" },
   { path: "loading-indicator" },
+  { path: "clamp-text" },
   { path: "", name: "home" },
 ];
