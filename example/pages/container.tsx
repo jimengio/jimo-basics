@@ -9,6 +9,7 @@ import DemoButtons from "./demo/buttons";
 import DemoTodo from "./demo/todo";
 import DemoTabs from "./demo/tabs";
 import DemoLoadingIndicator from "./demo/loading-indicator";
+import DemoClampText from "./demo/clamp-text";
 
 let items: ISidebarEntry[] = [
   {
@@ -27,6 +28,10 @@ let items: ISidebarEntry[] = [
     title: "Loading indicator",
     path: genRouter.loadingIndicator.name,
   },
+  {
+    title: "Clamp text",
+    path: genRouter.clampText.name,
+  },
 ];
 
 const renderChildPage = (routerTree: GenRouterTypeMain) => {
@@ -40,6 +45,8 @@ const renderChildPage = (routerTree: GenRouterTypeMain) => {
         return <DemoTabs />;
       case "loading-indicator":
         return <DemoLoadingIndicator />;
+      case "clamp-text":
+        return <DemoClampText />;
       default:
         return <HashRedirect to={genRouter.buttons.name} noDelay></HashRedirect>;
     }
