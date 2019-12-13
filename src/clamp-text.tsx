@@ -1,10 +1,11 @@
 import React, { FC } from "react";
-import { css } from "emotion";
+import { css, cx } from "emotion";
 
 let ClampText: FC<{
   /** defaults to 1 */
   lines?: number;
   text: string;
+  className?: string;
 }> = React.memo((props) => {
   let lines = props.lines || 1;
   /** Plugins */
@@ -13,7 +14,7 @@ let ClampText: FC<{
   /** Renderers */
 
   if (lines === 1) {
-    return <div className={styleSingleLine}>{props.text}</div>;
+    return <div className={cx(styleSingleLine, props.className)}>{props.text}</div>;
   }
 
   return (
@@ -36,10 +37,16 @@ let styleClampText = css`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  max-width: 100%;
+  word-break: break-word;
 `;
 
 let styleSingleLine = css`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  max-width: 100%;
+  word-break: break-word;
 `;
