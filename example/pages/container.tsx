@@ -85,7 +85,9 @@ let Container: FC<{
 
 export default Container;
 
-const styleContainer = css``;
+const styleContainer = css`
+  overflow: auto;
+`;
 
 let styleBody = css`
   padding: 16px;
