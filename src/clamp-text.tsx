@@ -1,5 +1,6 @@
 import React, { FC, useState, useRef } from "react";
 import { css, cx } from "emotion";
+import BasicTooltip from "./tooltip";
 
 let ClampText: FC<{
   /** defaults to 1 */
@@ -51,19 +52,7 @@ let ClampText: FC<{
   /** Renderers */
 
   let renderTooltip = () => {
-    if (props.addTooltip && showToopTip) {
-      return (
-        <div
-          className={cx(styleTooptip, props.tooltipClassName)}
-          style={{
-            left: pointer.x,
-            bottom: window.innerHeight - pointer.y + 6,
-          }}
-        >
-          {props.text}
-        </div>
-      );
-    }
+    return <BasicTooltip pointer={pointer} visible={props.addTooltip && showToopTip} className={props.tooltipClassName} text={props.text} />;
   };
 
   if (lines === 1) {
@@ -124,36 +113,4 @@ let styleSingleLine = css`
 
   max-width: 100%;
   word-break: break-word;
-`;
-
-let styleTooptip = css`
-  position: fixed;
-  transform: translate(-50%, 0);
-  background-color: hsl(0, 0%, 0%);
-  color: white;
-  padding: 4px 6px;
-  border-radius: 3px;
-  font-size: 13px;
-  max-width: 320px;
-
-  white-space: normal;
-
-  :before {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: block;
-    width: 20px;
-    height: 8px;
-    margin: auto;
-    content: "";
-    pointer-events: auto;
-    border-top: 8px solid black;
-    border-bottom: 0px solid transparent;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    box-sizing: border-box;
-  }
 `;
