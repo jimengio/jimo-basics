@@ -35,14 +35,19 @@ export default BasicTooltip;
 
 let styleTooptip = css`
   position: fixed;
-  transform: translate(-50%, 0);
+  animation-timing-function: ease-in-out;
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+  transition-property: opacity transform;
   transform-origin: 50% calc(100% + 6px);
-  background-color: hsl(0, 0%, 0%);
+  background-color: #323232;
   color: white;
-  padding: 4px 6px;
-  border-radius: 3px;
+  padding: 5px 8px;
+  border-radius: 2px;
   font-size: 13px;
-  max-width: 320px;
+  max-width: 280px;
+  font-size: 14px;
+  line-height: 22px;
 
   white-space: normal;
 
@@ -58,11 +63,21 @@ let styleTooptip = css`
     margin: auto;
     content: "";
     pointer-events: auto;
-    border-top: 8px solid black;
+    border-top: 8px solid #323232;
     border-bottom: 0px solid transparent;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     box-sizing: border-box;
+  }
+
+  :after {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 8px;
+    width: 100%;
+    content: "";
+    background-color: transparent;
   }
 `;
 
@@ -76,7 +91,6 @@ let styleTooltipContainer = css`
   .fade-in-out-enter-active {
     opacity: 1;
     transform: translate(-50%, 0) scale(1);
-    transition-property: opacity transform;
     transition-duration: ${transitionDuration}ms;
   }
   .fade-in-out-exit {
@@ -86,7 +100,6 @@ let styleTooltipContainer = css`
   .fade-in-out-exit-active {
     opacity: 0.3;
     transform: translate(-50%, 0) scale(0.94);
-    transition-property: opacity transform;
     transition-duration: ${transitionDuration}ms;
   }
 `;
