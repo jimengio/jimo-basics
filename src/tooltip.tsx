@@ -3,6 +3,7 @@ import { css, cx } from "emotion";
 import { CSSTransition } from "react-transition-group";
 
 let transitionDuration = 120;
+let tipColor = "rgb(239,239,239)";
 
 let BasicTooltip: FC<{
   visible: boolean;
@@ -40,8 +41,8 @@ let styleTooptip = css`
   transform: translate(-50%, 0) scale(1);
   transition-property: opacity transform;
   transform-origin: 50% calc(100% + 6px);
-  background-color: #323232;
-  color: white;
+  background-color: ${tipColor};
+  color: #323232;
   padding: 5px 8px;
   border-radius: 2px;
   font-size: 13px;
@@ -63,7 +64,7 @@ let styleTooptip = css`
     margin: auto;
     content: "";
     pointer-events: auto;
-    border-top: 8px solid #323232;
+    border-top: 8px solid ${tipColor};
     border-bottom: 0px solid transparent;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
