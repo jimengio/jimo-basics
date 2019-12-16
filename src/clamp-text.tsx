@@ -52,7 +52,10 @@ let ClampText: FC<{
   /** Renderers */
 
   let renderTooltip = () => {
-    return <BasicTooltip pointer={pointer} visible={props.addTooltip && showToopTip} className={props.tooltipClassName} text={props.text} />;
+    if (!props.addTooltip) {
+      return null;
+    }
+    return <BasicTooltip pointer={pointer} visible={showToopTip} className={props.tooltipClassName} text={props.text} />;
   };
 
   if (lines === 1) {

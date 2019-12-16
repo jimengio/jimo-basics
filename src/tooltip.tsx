@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import React, { FC, useRef, useEffect } from "react";
+import ReactDOM from "react-dom";
 import { css, cx } from "emotion";
 import { CSSTransition } from "react-transition-group";
 
@@ -11,11 +12,26 @@ let BasicTooltip: FC<{
   text: string;
   className?: string;
 }> = React.memo((props) => {
+  let containerRef = useRef<HTMLDivElement>();
+
   /** Plugins */
   /** Methods */
   /** Effects */
+
+  if (containerRef.current == null) {
+    let el = document.createElement("div");
+    containerRef.current = el;
+  }
+
+  useEffect(() => {
+    document.body.appendChild(containerRef.current);
+    return () => {
+      containerRef.current.remove();
+    };
+  }, []);
+
   /** Renderers */
-  return (
+  return ReactDOM.createPortal(
     <span className={styleTooltipContainer}>
       <CSSTransition in={props.visible} timeout={transitionDuration} classNames="fade-in-out" unmountOnExit>
         <div
@@ -28,7 +44,8 @@ let BasicTooltip: FC<{
           {props.text}
         </div>
       </CSSTransition>
-    </span>
+    </span>,
+    containerRef.current
   );
 });
 
