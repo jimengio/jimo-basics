@@ -20,6 +20,7 @@ let BasicTooltip: FC<{
 
   if (containerRef.current == null) {
     let el = document.createElement("div");
+    el.className = styleTooltipContainer;
     containerRef.current = el;
   }
 
@@ -32,19 +33,17 @@ let BasicTooltip: FC<{
 
   /** Renderers */
   return ReactDOM.createPortal(
-    <span className={styleTooltipContainer}>
-      <CSSTransition in={props.visible} timeout={transitionDuration} classNames="fade-in-out" unmountOnExit>
-        <div
-          className={cx(styleTooptip, props.className)}
-          style={{
-            left: props.pointer.x,
-            bottom: window.innerHeight - props.pointer.y + 6,
-          }}
-        >
-          {props.text}
-        </div>
-      </CSSTransition>
-    </span>,
+    <CSSTransition in={props.visible} timeout={transitionDuration} classNames="fade-in-out" unmountOnExit>
+      <div
+        className={cx(styleTooptip, props.className)}
+        style={{
+          left: props.pointer.x,
+          bottom: window.innerHeight - props.pointer.y + 6,
+        }}
+      >
+        {props.text}
+      </div>
+    </CSSTransition>,
     containerRef.current
   );
 });
@@ -68,6 +67,7 @@ let styleTooptip = css`
   line-height: 22px;
 
   white-space: normal;
+  word-break: break-word;
 
   :before {
     position: absolute;
@@ -100,7 +100,8 @@ let styleTooptip = css`
 `;
 
 let styleTooltipContainer = css`
-  z-index: 900;
+  z-index: 1200; /* display above modals */
+  position: absolute;
 
   .fade-in-out-enter {
     opacity: 0.3;
