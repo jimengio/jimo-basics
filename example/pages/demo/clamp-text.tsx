@@ -38,31 +38,6 @@ let DemoClampText: FC<{}> = React.memo((props) => {
           <ClampText lines={4} text={text} />
         </div>
       </DocDemo>
-
-      <DocDemo title={"Tooltips"}>
-        <DocBlock content={contentTooltip} />
-        <DocSnippet code={codeTooltip} />
-        <div className={styleNarrow}>
-          <ClampText text={text} addTooltip />
-          <Space height={40} />
-          <ClampText text={text} lines={2} addTooltip />
-          <Space height={40} />
-          <ClampText text={"短就不显示"} addTooltip />
-        </div>
-        <Space height={40} />
-
-        <DocBlock content={contentTooltipState} />
-        <DocSnippet code={codeTooltipState} />
-        <div className={styleNarrow}>
-          <ClampText
-            text={text}
-            lines={2}
-            onTooltipStateChange={(visible) => {
-              console.log("Tooltip visible", visible);
-            }}
-          />
-        </div>
-      </DocDemo>
     </div>
   );
 });
@@ -87,21 +62,3 @@ let codeInline = `<ClampText text={text} />`;
 let code2Lines = `<ClampText lines={2} text={text} />`;
 
 let code4Lines = `<ClampText lines={4} text={text} />`;
-
-let contentTooltip = `有内容被省略的位置, 可以通过 \`addTooltip\` 属性控制显示完整内容`;
-
-let codeTooltip = `<ClampText text={text} addTooltip />`;
-
-let codeTooltipState = `
-<ClampText
-  text={text}
-  lines={2}
-  onTooltipStateChange={(visible) => {
-    console.log("Tooltip visible", visible);
-  }}
-/>
-`;
-
-let contentTooltipState = `
-通过 \`onTooltipStateChange\` 可以获取是否需要显示 Tooltip 这个状态.
-`;
