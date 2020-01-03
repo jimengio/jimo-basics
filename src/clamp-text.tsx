@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from "react";
+import React, { FC, useState, useRef, CSSProperties } from "react";
 import { css, cx } from "emotion";
 import BasicTooltip from "./tooltip";
 
@@ -7,6 +7,7 @@ let ClampText: FC<{
   lines?: number;
   text: string;
   className?: string;
+  style?: CSSProperties;
   tooltipClassName?: string;
   addTooltip?: boolean;
   onTooltipStateChange?: (visible?: boolean) => void;
@@ -62,6 +63,7 @@ let ClampText: FC<{
     return (
       <div
         className={cx(styleSingleLine, props.className)}
+        style={props.style}
         ref={elRef}
         onMouseEnter={() => {
           detectTruncated();
@@ -82,6 +84,7 @@ let ClampText: FC<{
       ref={elRef}
       style={{
         WebkitLineClamp: lines,
+        ...props.style,
       }}
       onMouseEnter={() => {
         detectTruncated();
