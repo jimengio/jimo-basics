@@ -53,7 +53,7 @@ let ClampText: FC<{
     }
 
     if (leavingTimeoutRef.current != null) {
-      clearInterval(leavingTimeoutRef.current);
+      clearTimeout(leavingTimeoutRef.current);
       leavingTimeoutRef.current = null;
     }
 
@@ -69,7 +69,7 @@ let ClampText: FC<{
     }
 
     if (enteringTimeoutRef.current != null) {
-      clearInterval(enteringTimeoutRef.current);
+      clearTimeout(enteringTimeoutRef.current);
       enteringTimeoutRef.current = null;
     }
 
