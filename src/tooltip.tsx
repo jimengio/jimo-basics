@@ -55,7 +55,7 @@ let styleTooptip = css`
   animation-timing-function: ease-in-out;
   opacity: 1;
   transform: translate(-50%, 0) scale(1);
-  transition-property: opacity transform;
+  transition-property: opacity, transform;
   transform-origin: 50% calc(100% + 6px);
   background-color: ${tipColor};
   color: #323232;

@@ -24,8 +24,18 @@ let DemoTextTooltip: FC<{}> = React.memo((props) => {
           <Space height={40} />
           <ClampText text={"短就不显示"} addTooltip />
         </div>
-        <Space height={40} />
+      </DocDemo>
 
+      <DocDemo title="Delay">
+        <DocBlock content={contentDelay} />
+        <DocSnippet code={codeDelay} />
+        <div className={styleNarrow}>
+          <ClampText text={text} delay={800} addTooltip />
+        </div>
+        <Space height={40} />
+      </DocDemo>
+
+      <DocDemo title="Parent state">
         <DocBlock content={contentTooltipState} />
         <DocSnippet code={codeTooltipState} />
         <div className={styleNarrow}>
@@ -65,4 +75,12 @@ let codeTooltipState = `
 
 let contentTooltipState = `
 通过 \`onTooltipStateChange\` 可以获取是否需要显示 Tooltip 这个状态.
+`;
+
+let contentDelay = `
+\`delay\` 属性可以控制 Tooltip 打开关闭相对于鼠标进入离开的延时. 默认 160ms.
+`;
+
+let codeDelay = `
+<ClampText text={text} delay={800} addTooltip />
 `;

@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, CSSProperties } from "react";
+import React, { FC, useState, useRef, CSSProperties, useReducer } from "react";
 import { css, cx } from "emotion";
 import BasicTooltip from "./tooltip";
 
@@ -11,13 +11,18 @@ let ClampText: FC<{
   tooltipClassName?: string;
   addTooltip?: boolean;
   onTooltipStateChange?: (visible?: boolean) => void;
+  /** defaults to 160ms, for both enter and leave */
+  delay?: number;
 }> = React.memo((props) => {
   let elRef = useRef<HTMLDivElement>();
+  let enteringTimeoutRef = useRef<NodeJS.Timeout>(null);
+  let leavingTimeoutRef = useRef<NodeJS.Timeout>(null);
 
   let [showToopTip, setShowTooltip] = useState(false);
   let [pointer, setPointer] = useState({ x: 0, y: 0 });
 
   let lines = props.lines || 1;
+  let delay = props.delay ?? 160;
 
   /** Plugins */
   /** Methods */
@@ -42,11 +47,39 @@ let ClampText: FC<{
     }
   };
 
-  let handleLeave = () => {
-    setShowTooltip(false);
-    if (props.onTooltipStateChange != null && showToopTip) {
-      props.onTooltipStateChange(false);
+  let handleEnter = () => {
+    if (enteringTimeoutRef.current != null) {
+      return;
     }
+
+    if (leavingTimeoutRef.current != null) {
+      clearTimeout(leavingTimeoutRef.current);
+      leavingTimeoutRef.current = null;
+    }
+
+    enteringTimeoutRef.current = setTimeout(() => {
+      detectTruncated();
+      enteringTimeoutRef.current = null;
+    }, delay);
+  };
+
+  let handleLeave = () => {
+    if (leavingTimeoutRef.current != null) {
+      return;
+    }
+
+    if (enteringTimeoutRef.current != null) {
+      clearTimeout(enteringTimeoutRef.current);
+      enteringTimeoutRef.current = null;
+    }
+
+    leavingTimeoutRef.current = setTimeout(() => {
+      setShowTooltip(false);
+      if (props.onTooltipStateChange != null && showToopTip) {
+        props.onTooltipStateChange(false);
+      }
+      leavingTimeoutRef.current = null;
+    }, delay);
   };
 
   /** Effects */
@@ -66,7 +99,7 @@ let ClampText: FC<{
         style={props.style}
         ref={elRef}
         onMouseEnter={() => {
-          detectTruncated();
+          handleEnter();
         }}
         onMouseLeave={() => {
           handleLeave();
@@ -87,7 +120,7 @@ let ClampText: FC<{
         ...props.style,
       }}
       onMouseEnter={() => {
-        detectTruncated();
+        handleEnter();
       }}
       onMouseLeave={() => {
         handleLeave();
