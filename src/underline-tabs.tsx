@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, CSSProperties } from "react";
 import { css, cx } from "emotion";
 import { row } from "@jimengio/flex-styles";
 import { IJimoTabItem } from "./jimo-tabs";
@@ -11,12 +11,14 @@ export let UnderlineTabs: FC<{
   value: string;
   items: IJimoTabItem[];
   onClick: (value: IJimoTabItem) => void;
+  className?: string;
+  style?: CSSProperties;
 }> = React.memo((props) => {
   /** Methods */
   /** Effects */
   /** Renderers */
   return (
-    <div className={cx(row, styleUnderlineTabs)}>
+    <div className={cx(row, styleUnderlineTabs, props.className)} style={props.style}>
       {props.items.map((item) => {
         return (
           <div
@@ -41,7 +43,7 @@ let styleUnderlineTabs = css`
 `;
 
 let styleUnderlineTab = css`
-  color: ${themeColor};
+  color: hsla(0, 0%, 59%, 1);
   border-bottom: 2px solid white;
   cursor: pointer;
   margin-right: 4px;
@@ -56,4 +58,5 @@ let styleUnderlineTab = css`
 
 let styleSelectedUnderline = css`
   border-bottom: 2px solid ${themeColor};
+  color: ${themeColor};
 `;
