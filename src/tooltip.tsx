@@ -9,7 +9,7 @@ let tipColor = "rgb(239,239,239)";
 let BasicTooltip: FC<{
   visible: boolean;
   pointer: { x: number; y: number };
-  text: string | React.ReactNode;
+  text: React.ReactNode;
   className?: string;
 }> = React.memo((props) => {
   let containerRef = useRef<HTMLDivElement>();
