@@ -5,7 +5,7 @@ import BasicTooltip from "./tooltip";
 let ClampText: FC<{
   /** defaults to 1 */
   lines?: number;
-  text: string;
+  text: string | React.ReactNode;
   className?: string;
   style?: CSSProperties;
   tooltipClassName?: string;
