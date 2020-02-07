@@ -1,6 +1,6 @@
 {
   "name": "@jimengio/jimo-basics",
-  "version": "0.0.12",
+  "version": "0.0.12-dev1",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "compile": "rm -rfv lib/* && tsc -d --project tsconfig-compile.json --outDir lib/",
     "upload": "rsync -avr --progress dist/ fe.jimu.io:~/repo/jimengio/jimo-basics",
     "gen-router": "ts-node -P tsconfig-node.json -r tsconfig-paths/register example/gen-router.ts",
-    "prepare": "yarn compile",
+    "build-scripts": "yarn compile",
     "postinstall": "rm -rfv node_modules/@types/*/node_modules/@types/react"
   },
   "keywords": [],
