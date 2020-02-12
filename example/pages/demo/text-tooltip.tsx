@@ -18,11 +18,30 @@ let DemoTextTooltip: FC<{}> = React.memo((props) => {
         <DocBlock content={contentTooltip} />
         <DocSnippet code={codeTooltip} />
         <div className={styleNarrow}>
-          <ClampText text={text} addTooltip />
+          <ClampText
+            text={text}
+            addTooltip
+            onTextClick={() => {
+              console.log("click on text");
+            }}
+          />
           <Space height={40} />
-          <ClampText text={text} lines={2} addTooltip />
+          <ClampText
+            text={text}
+            lines={2}
+            addTooltip
+            onTextClick={() => {
+              console.log("click on text");
+            }}
+          />
           <Space height={40} />
-          <ClampText text={"短就不显示"} addTooltip />
+          <ClampText
+            text={"短就不显示"}
+            addTooltip
+            onTextClick={() => {
+              console.log("click on text");
+            }}
+          />
         </div>
       </DocDemo>
 

@@ -13,6 +13,8 @@ let ClampText: FC<{
   onTooltipStateChange?: (visible?: boolean) => void;
   /** defaults to 160ms, for both enter and leave */
   delay?: number;
+  /** respond to clicks on text, not including tooltop */
+  onTextClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }> = React.memo((props) => {
   let elRef = useRef<HTMLDivElement>();
   let enteringTimeoutRef = useRef<NodeJS.Timeout>(null);
@@ -82,6 +84,12 @@ let ClampText: FC<{
     }, delay);
   };
 
+  let onTextClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (event.target === elRef.current) {
+      props.onTextClick(event);
+    }
+  };
+
   /** Effects */
   /** Renderers */
 
@@ -104,6 +112,7 @@ let ClampText: FC<{
         onMouseLeave={() => {
           handleLeave();
         }}
+        onClick={onTextClick}
       >
         {props.text}
         {renderTooltip()}
@@ -125,6 +134,7 @@ let ClampText: FC<{
       onMouseLeave={() => {
         handleLeave();
       }}
+      onClick={onTextClick}
     >
       {props.text}
       {renderTooltip()}
