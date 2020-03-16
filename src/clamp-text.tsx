@@ -2,7 +2,7 @@ import React, { FC, useState, useRef, CSSProperties, useReducer } from "react";
 import { css, cx } from "emotion";
 import BasicTooltip from "./tooltip";
 
-let ClampText: FC<{
+export interface IClampTextProps {
   /** defaults to 1 */
   lines?: number;
   text: React.ReactNode;
@@ -15,7 +15,9 @@ let ClampText: FC<{
   delay?: number;
   /** respond to clicks on text, not including tooltop */
   onTextClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-}> = React.memo((props) => {
+}
+
+let ClampText: FC<IClampTextProps> = React.memo((props) => {
   let elRef = useRef<HTMLDivElement>();
   let enteringTimeoutRef = useRef<NodeJS.Timeout>(null);
   let leavingTimeoutRef = useRef<NodeJS.Timeout>(null);
