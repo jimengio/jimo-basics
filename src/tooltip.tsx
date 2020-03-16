@@ -4,11 +4,11 @@ import { css, cx } from "emotion";
 import { CSSTransition } from "react-transition-group";
 
 let transitionDuration = 120;
-let tipColor = "rgb(239,239,239)";
+let tipColor = "hsla(0, 0%, 59%, 1)";
 
 let BasicTooltip: FC<{
   visible: boolean;
-  pointer: { x: number; y: number };
+  pointer: { x: number; top: number; bottom: number };
   text: React.ReactNode;
   className?: string;
 }> = React.memo((props) => {
@@ -31,15 +31,25 @@ let BasicTooltip: FC<{
     };
   }, []);
 
+  let isLongText = typeof props.text === "string" && props.text.length > 100;
+  let showBelow = props.pointer.top < 240;
+
   /** Renderers */
   return ReactDOM.createPortal(
     <CSSTransition in={props.visible} timeout={transitionDuration} classNames="fade-in-out" unmountOnExit>
       <div
-        className={cx(styleTooptip, props.className)}
-        style={{
-          left: props.pointer.x,
-          bottom: window.innerHeight - props.pointer.y + 6,
-        }}
+        className={cx(styleTooptip, isLongText ? styleLongText : null, showBelow ? styleBelow : null, props.className)}
+        style={
+          showBelow
+            ? {
+                left: props.pointer.x,
+                top: props.pointer.bottom + 6,
+              }
+            : {
+                left: props.pointer.x,
+                bottom: window.innerHeight - props.pointer.top + 6,
+              }
+        }
       >
         {props.text}
       </div>
@@ -58,7 +68,7 @@ let styleTooptip = css`
   transition-property: opacity, transform;
   transform-origin: 50% calc(100% + 6px);
   background-color: ${tipColor};
-  color: #323232;
+  color: white;
   padding: 5px 8px;
   border-radius: 2px;
   font-size: 13px;
@@ -120,5 +130,40 @@ let styleTooltipContainer = css`
     opacity: 0.3;
     transform: translate(-50%, 0) scale(0.94);
     transition-duration: ${transitionDuration}ms;
+  }
+`;
+
+let styleLongText = css`
+  max-width: 480px;
+`;
+
+let styleBelow = css`
+  :before {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 20px;
+    height: 8px;
+    margin: auto;
+    content: "";
+    pointer-events: auto;
+    border-bottom: 8px solid ${tipColor};
+    border-top: 0px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    box-sizing: border-box;
+  }
+
+  :after {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    height: 8px;
+    width: 100%;
+    content: "";
+    background-color: transparent;
   }
 `;

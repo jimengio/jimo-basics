@@ -4,13 +4,14 @@ import { css, cx } from "emotion";
 import { HashRedirect, findRouteTarget } from "@jimengio/ruled-router/lib/dom";
 import { genRouter, GenRouterTypeMain } from "controller/generated-router";
 import { DocSidebar, ISidebarEntry } from "@jimengio/doc-frame";
-import { fullscreen, row } from "@jimengio/flex-styles";
+import { fullscreen, row, expand } from "@jimengio/flex-styles";
 import DemoButtons from "./demo/buttons";
 import DemoTodo from "./demo/todo";
 import DemoTabs from "./demo/tabs";
 import DemoLoadingIndicator from "./demo/loading-indicator";
 import DemoClampText from "./demo/clamp-text";
 import DemoTextTooltip from "./demo/text-tooltip";
+import DemoLabeledAttributes from "./demo/labeled-attributes";
 
 let items: ISidebarEntry[] = [
   {
@@ -37,6 +38,10 @@ let items: ISidebarEntry[] = [
     title: "Text tooltip",
     path: genRouter.textTooltip.name,
   },
+  {
+    title: "Labeled attributes",
+    path: genRouter.labeledAttributes.name,
+  },
 ];
 
 const renderChildPage = (routerTree: GenRouterTypeMain) => {
@@ -54,6 +59,8 @@ const renderChildPage = (routerTree: GenRouterTypeMain) => {
         return <DemoClampText />;
       case "text-tooltip":
         return <DemoTextTooltip />;
+      case "labeled-attributes":
+        return <DemoLabeledAttributes />;
       default:
         return <HashRedirect to={genRouter.buttons.name} noDelay></HashRedirect>;
     }
@@ -85,7 +92,7 @@ let Container: FC<{
         items={items}
       />
 
-      <div className={styleBody}>{renderChildPage(props.router)}</div>
+      <div className={cx(expand, styleBody)}>{renderChildPage(props.router)}</div>
     </div>
   );
 });

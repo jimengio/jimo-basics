@@ -43,6 +43,7 @@ let styleUnderlineTabs = css`
 `;
 
 let styleUnderlineTab = css`
+  font-size: 14px;
   color: hsla(0, 0%, 59%, 1);
   border-bottom: 2px solid white;
   cursor: pointer;
@@ -50,6 +51,8 @@ let styleUnderlineTab = css`
   transition-duration: 240ms;
   line-height: 28px;
   padding: 0 12px;
+  min-width: 56px;
+  text-align: center;
 
   :hover {
     background-color: hsla(0, 0%, 98%, 1);
