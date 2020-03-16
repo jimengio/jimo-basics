@@ -6,6 +6,8 @@ export interface IClampTextProps {
   /** defaults to 1 */
   lines?: number;
   text: React.ReactNode;
+  /** text property might be a node with text, use tooltipText to overwrite */
+  tooltipText?: string;
   className?: string;
   style?: CSSProperties;
   tooltipClassName?: string;
@@ -23,7 +25,7 @@ let ClampText: FC<IClampTextProps> = React.memo((props) => {
   let leavingTimeoutRef = useRef<NodeJS.Timeout>(null);
 
   let [showToopTip, setShowTooltip] = useState(false);
-  let [pointer, setPointer] = useState({ x: 0, y: 0 });
+  let [pointer, setPointer] = useState({ x: 0, top: 0, bottom: 0 });
 
   let lines = props.lines || 1;
   let delay = props.delay ?? 160;
@@ -42,7 +44,8 @@ let ClampText: FC<IClampTextProps> = React.memo((props) => {
       setShowTooltip(truncated);
       setPointer({
         x: rect.left + el.offsetWidth / 2,
-        y: rect.top,
+        top: rect.top,
+        bottom: rect.bottom,
       });
 
       if (props.onTooltipStateChange != null) {
@@ -87,7 +90,7 @@ let ClampText: FC<IClampTextProps> = React.memo((props) => {
   };
 
   let onTextClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (event.target === elRef.current) {
+    if (props.onTextClick != null && event.target === elRef.current) {
       props.onTextClick(event);
     }
   };
@@ -99,7 +102,7 @@ let ClampText: FC<IClampTextProps> = React.memo((props) => {
     if (!props.addTooltip) {
       return null;
     }
-    return <BasicTooltip pointer={pointer} visible={showToopTip} className={props.tooltipClassName} text={props.text} />;
+    return <BasicTooltip pointer={pointer} visible={showToopTip} className={props.tooltipClassName} text={props.tooltipText || props.text} />;
   };
 
   if (lines === 1) {

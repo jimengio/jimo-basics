@@ -54,6 +54,15 @@ let DemoTextTooltip: FC<{}> = React.memo((props) => {
         <Space height={40} />
       </DocDemo>
 
+      <DocDemo title="对于包含节点样式的组件的 text 展示">
+        <DocBlock content={contentDelay} />
+        <DocSnippet code={codeDelay} />
+        <div className={styleNarrow}>
+          <ClampText text={<a href="#">{text}</a>} tooltipText={text} addTooltip />
+        </div>
+        <Space height={40} />
+      </DocDemo>
+
       <DocDemo title="Parent state">
         <DocBlock content={contentTooltipState} />
         <DocSnippet code={codeTooltipState} />

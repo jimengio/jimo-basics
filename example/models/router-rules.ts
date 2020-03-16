@@ -8,5 +8,6 @@ export const routerRules: IRouteRule[] = [
   { path: "loading-indicator" },
   { path: "clamp-text" },
   { path: "text-tooltip" },
+  { path: "labeled-attributes" },
   { path: "", name: "home" },
 ];

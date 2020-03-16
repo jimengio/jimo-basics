@@ -57,6 +57,12 @@ export let genRouter = {
     path: () => `/text-tooltip`,
     go: () => switchPath(`/text-tooltip`),
   },
+  labeledAttributes: {
+    name: "labeled-attributes",
+    raw: "labeled-attributes",
+    path: () => `/labeled-attributes`,
+    go: () => switchPath(`/labeled-attributes`),
+  },
   $: {
     name: "home",
     raw: "",
@@ -73,6 +79,7 @@ export type GenRouterTypeMain =
   | GenRouterTypeTree["loadingIndicator"]
   | GenRouterTypeTree["clampText"]
   | GenRouterTypeTree["textTooltip"]
+  | GenRouterTypeTree["labeledAttributes"]
   | GenRouterTypeTree["$"];
 
 export interface GenRouterTypeTree {
@@ -114,6 +121,12 @@ export interface GenRouterTypeTree {
   };
   textTooltip: {
     name: "text-tooltip";
+    params: {};
+    query: {};
+    next: null;
+  };
+  labeledAttributes: {
+    name: "labeled-attributes";
     params: {};
     query: {};
     next: null;
