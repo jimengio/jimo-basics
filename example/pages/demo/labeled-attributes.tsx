@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { css } from "emotion";
 import { DocDemo, DocSnippet, DocBlock } from "@jimengio/doc-frame";
-import LabeledAttibutes, { ILabeledAttribute } from "../../../src/labeled-attributes";
+import LabeledAttributes, { ILabeledAttribute } from "../../../src/labeled-attributes";
 import { expand } from "@jimengio/flex-styles";
 
 let DemoLabeledAttributes: FC<{}> = React.memo((props) => {
@@ -117,23 +117,23 @@ let DemoLabeledAttributes: FC<{}> = React.memo((props) => {
       </DocDemo>
 
       <DocDemo title={"Short"} className={styleWidth}>
-        <LabeledAttibutes attributes={shortAttributes} />
+        <LabeledAttributes attributes={shortAttributes} />
       </DocDemo>
 
       <DocDemo title={"Short align right"} className={styleWidth}>
-        <LabeledAttibutes attributes={shortAttributes} alignToRight />
+        <LabeledAttributes attributes={shortAttributes} alignToRight />
       </DocDemo>
 
       <DocDemo title={"Mixed"} className={styleWidth}>
-        <LabeledAttibutes attributes={mixedAttributes} />
+        <LabeledAttributes attributes={mixedAttributes} />
       </DocDemo>
 
       <DocDemo title={"Mixed align right"} className={styleWidth}>
-        <LabeledAttibutes attributes={mixedAttributes} alignToRight />
+        <LabeledAttributes attributes={mixedAttributes} alignToRight />
       </DocDemo>
 
       <DocDemo title={"Long"} className={styleWidth}>
-        <LabeledAttibutes attributes={longAttributes} />
+        <LabeledAttributes attributes={longAttributes} />
       </DocDemo>
     </div>
   );
@@ -157,11 +157,11 @@ let shortAttributes: ILabeledAttribute[] = [
   // ...
 ]
 
-<LabeledAttibutes attributes={shortAttributes} />
+<LabeledAttributes attributes={shortAttributes} />
 
-<LabeledAttibutes attributes={shortAttributes} alignToRight />
+<LabeledAttributes attributes={shortAttributes} alignToRight />
 `;
 
 let content = `
-LabeledAttibutes 默认提供三列的布局. 支持标签左右对齐. 具体业务还可以根据 \`itemClassName\`, \`LabelClassName\`, \`itemWidth\` 等属性控制.
+LabeledAttributes 默认提供三列的布局. 支持标签左右对齐. 具体业务还可以根据 \`itemClassName\`, \`LabelClassName\`, \`itemWidth\` 等属性控制.
 `;

@@ -12,7 +12,7 @@ export interface ILabeledAttribute {
   labelWidth?: number | string;
 }
 
-let LabeledAttibutes: FC<{
+let LabeledAttributes: FC<{
   attributes: ILabeledAttribute[];
   className?: string;
   alignToRight?: boolean;
@@ -48,7 +48,7 @@ let LabeledAttibutes: FC<{
   );
 });
 
-export default LabeledAttibutes;
+export default LabeledAttributes;
 
 let styleItem = css`
   padding-right: 16px;
