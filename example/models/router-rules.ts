@@ -2,6 +2,7 @@ import { IRouteRule } from "@jimengio/ruled-router";
 
 export const routerRules: IRouteRule[] = [
   { path: "home" },
+  { path: "color-scheme" },
   { path: "buttons" },
   { path: "tabs" },
   { path: "todo" },

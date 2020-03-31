@@ -12,7 +12,7 @@ function qsStringify(queries: { [k: string]: string }) {
 
 // generated
 
-// Generated with router-code-generator@0.2.5
+// Generated with router-code-generator@0.2.6
 
 export let genRouter = {
   home: {
@@ -20,6 +20,12 @@ export let genRouter = {
     raw: "home",
     path: () => `/home`,
     go: () => switchPath(`/home`),
+  },
+  colorScheme: {
+    name: "color-scheme",
+    raw: "color-scheme",
+    path: () => `/color-scheme`,
+    go: () => switchPath(`/color-scheme`),
   },
   buttons: {
     name: "buttons",
@@ -73,6 +79,7 @@ export let genRouter = {
 
 export type GenRouterTypeMain =
   | GenRouterTypeTree["home"]
+  | GenRouterTypeTree["colorScheme"]
   | GenRouterTypeTree["buttons"]
   | GenRouterTypeTree["tabs"]
   | GenRouterTypeTree["todo"]
@@ -85,6 +92,12 @@ export type GenRouterTypeMain =
 export interface GenRouterTypeTree {
   home: {
     name: "home";
+    params: {};
+    query: {};
+    next: null;
+  };
+  colorScheme: {
+    name: "color-scheme";
     params: {};
     query: {};
     next: null;
