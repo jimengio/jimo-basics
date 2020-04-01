@@ -11,11 +11,11 @@ let textSizes = [
   },
   {
     title: "标题行高",
-    code: "TODO",
+    code: "45px(TODO)",
   },
   {
     title: "标题外边距",
-    code: "TODO",
+    code: "32px 0 16px 0",
   },
   {
     title: "普通文字大小",
@@ -23,71 +23,67 @@ let textSizes = [
   },
   {
     title: "普通文字行高",
-    code: "TODO",
+    code: "20px",
   },
 ];
 
 let uiSizes = [
   {
-    title: "App body 页面, 内边距参数",
+    title: "线框常用内边距",
     code: "12px 16px",
   },
   {
-    title: "分组和内容等, 常用的纵向间距(border 到 border, 或者文字到文字, 文字到 border)",
-    code: "12px 16px",
+    title: "(特定)footer 间距",
+    code: "16px",
   },
   {
-    title: "行内元素间距(border 到 border, border 到文字, 可能有图标)",
-    code: "TODO",
+    title: "元素 border 到另一个元素 border 间距",
+    code: "12px",
   },
   {
-    title: "框内常用内边距(border 到文字), 纵向",
-    code: "TODO",
+    title: "元素 border 到另一个块文字间距",
+    code: "8px",
+  },
+  {
+    title: "文字到另一块文字间距",
+    code: "8px",
+  },
+  {
+    title: "图标到紧随的文字",
+    code: "4px",
   },
 ];
 
 let tableSizes = [
   {
-    title: "名称等长度相对固定的, 超出用 ClampText, 一般默认宽度",
-    code: "TODO",
-  },
-  {
-    title: "状态标签 column, 数字 column, 宽度较为确定(考虑到英文其实还是会伸长), 一般默认宽度",
-    code: "TODO",
-  },
-  {
-    title: "操作 column",
-    code: "TODO",
+    title: "目前只能大致约定, 以 40 为单位",
+    code: "120px 160px 200px...",
   },
 ];
 
 let formSizes = [
   {
     title: "label 区域默认宽度",
-    code: "TODO",
+    code: "120px",
   },
   {
     title: "input/textarea/select 常用的统一宽度",
     code: "220px",
   },
   {
-    title: "表单内上下边距",
-    code: "TODO",
+    title: "表单内上下内边距, 跟按钮之间的间距",
+    code: "16px",
   },
 ];
 
 let listSizes = [
   {
-    title: "List 单行的高度",
-    code: "TODO",
+    title: "List item 高度(含图标文字的情况)",
+    code: "36px",
   },
   {
-    title: "List 单行的宽度",
-    code: "TODO",
-  },
-  {
-    title: "List 单行的边距",
-    code: "TODO",
+    title: "List item 纵向内边距",
+    code: "8px",
   },
 ];
 
@@ -108,7 +104,7 @@ let DemoLayoutSizes: FC<{}> = React.memo((props) => {
   };
 
   return (
-    <div>
+    <div className={styleContainer}>
       <DocDemo title="文字大小行高">
         {textSizes.map((x) => {
           return renderLine(x);
@@ -152,4 +148,8 @@ let styleLine = css`
   :hover {
     background-color: hsla(0, 0%, 0%, 0.02);
   }
+`;
+
+let styleContainer = css`
+  padding-bottom: 200px;
 `;

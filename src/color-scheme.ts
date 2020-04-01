@@ -29,6 +29,8 @@ export let colorScheme = {
     link: "hsla(221, 100%, 61%, 1)",
     /** 链接文字 hover 颜色 */
     hoverLink: "hsla(221, 100%, 61%, 1)",
+    /** 点击瞬间颜色 */
+    activeLink: "hsl(221, 81%, 48%)",
   },
 
   border: {

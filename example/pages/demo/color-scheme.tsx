@@ -10,7 +10,7 @@ let mainColors = [
   {
     color: colorScheme.indigo,
     copy: "colorScheme.indigo",
-    intro: "弹窗内标题文字、内容区域标题文字",
+    intro: "(主题色) 弹窗内标题文字、内容区域标题文字",
   },
   {
     color: colorScheme.blue,
@@ -51,19 +51,19 @@ let borderColors = [
     intro: "边框颜色",
   },
   {
+    color: colorScheme.border.divider,
+    copy: "colorScheme.border.divider",
+    intro: "分割线颜色",
+  },
+  {
     color: colorScheme.border.hover,
     copy: "colorScheme.border.hover",
-    intro: "边框 hover 颜色",
+    intro: "边框 hover 颜色(一些场景会加阴影 2px hsla(223, 93%, 35%, 0.3))",
   },
   {
     color: colorScheme.border.highlight,
     copy: "colorScheme.border.highlight",
     intro: "边框高亮颜色颜色",
-  },
-  {
-    color: colorScheme.border.divider,
-    copy: "colorScheme.border.divider",
-    intro: "分割线颜色",
   },
 ];
 
@@ -107,6 +107,11 @@ let fontColors = [
     color: colorScheme.font.hoverLink,
     copy: "colorScheme.font.hoverLink",
     intro: "文案选中颜色",
+  },
+  {
+    color: colorScheme.font.activeLink,
+    copy: "colorScheme.font.activeLink",
+    intro: "点击瞬间颜色",
   },
 ];
 
