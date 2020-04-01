@@ -27,6 +27,12 @@ export let genRouter = {
     path: () => `/color-scheme`,
     go: () => switchPath(`/color-scheme`),
   },
+  layoutSizes: {
+    name: "layout-sizes",
+    raw: "layout-sizes",
+    path: () => `/layout-sizes`,
+    go: () => switchPath(`/layout-sizes`),
+  },
   buttons: {
     name: "buttons",
     raw: "buttons",
@@ -80,6 +86,7 @@ export let genRouter = {
 export type GenRouterTypeMain =
   | GenRouterTypeTree["home"]
   | GenRouterTypeTree["colorScheme"]
+  | GenRouterTypeTree["layoutSizes"]
   | GenRouterTypeTree["buttons"]
   | GenRouterTypeTree["tabs"]
   | GenRouterTypeTree["todo"]
@@ -98,6 +105,12 @@ export interface GenRouterTypeTree {
   };
   colorScheme: {
     name: "color-scheme";
+    params: {};
+    query: {};
+    next: null;
+  };
+  layoutSizes: {
+    name: "layout-sizes";
     params: {};
     query: {};
     next: null;

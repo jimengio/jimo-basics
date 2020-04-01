@@ -4,6 +4,7 @@ import { DocDemo } from "@jimengio/doc-frame";
 import { colorScheme } from "../../../src/color-scheme";
 import { row, rowMiddle, center, Space } from "@jimengio/flex-styles";
 import copy from "copy-to-clipboard";
+import CopyCode from "./copied";
 
 let mainColors = [
   {
@@ -108,26 +109,6 @@ let fontColors = [
     intro: "文案选中颜色",
   },
 ];
-
-let CopyCode: FC<{ code: string }> = React.memo((props) => {
-  let [copied, setCopied] = useState(false);
-
-  return (
-    <div
-      className={styleCopy}
-      onClick={() => {
-        setCopied(true);
-        copy(props.code);
-        setTimeout(() => {
-          setCopied(false);
-        }, 600);
-      }}
-    >
-      {props.code}
-      {copied ? <div className={styleCopied}>Copied</div> : null}
-    </div>
-  );
-});
 
 let DemoColorScheme: FC<{}> = React.memo((props) => {
   /** Plugins */
@@ -254,25 +235,6 @@ let styleContainer = css`
   padding-bottom: 200px;
 `;
 
-let styleCopy = css`
-  font-size: 12px;
-  width: 200px;
-  cursor: pointer;
-  color: ${colorScheme.font.secondary};
-  position: relative;
-
-  :hover {
-    color: ${colorScheme.font.hoverLink};
-  }
-`;
-
 let styleDemo = css`
   max-width: 100%;
-`;
-
-let styleCopied = css`
-  position: absolute;
-  top: 0;
-  background-color: hsla(0, 0%, 100%, 0.9);
-  padding: 4px 8px;
 `;
