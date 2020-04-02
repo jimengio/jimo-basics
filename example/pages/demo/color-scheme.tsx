@@ -1,116 +1,116 @@
 import React, { FC, useState } from "react";
 import { css, cx } from "emotion";
 import { DocDemo } from "@jimengio/doc-frame";
-import { colorScheme } from "../../../src/color-scheme";
+import { ColorScheme } from "../../../src/color-scheme";
 import { row, rowMiddle, center, Space } from "@jimengio/flex-styles";
 import copy from "copy-to-clipboard";
 import CopyCode from "./copied";
 
 let mainColors = [
   {
-    color: colorScheme.indigo,
-    copy: "colorScheme.indigo",
+    color: ColorScheme.indigo,
+    copy: "ColorScheme.indigo",
     intro: "(主题色) 弹窗内标题文字、内容区域标题文字",
   },
   {
-    color: colorScheme.blue,
-    copy: "colorScheme.blue",
+    color: ColorScheme.blue,
+    copy: "ColorScheme.blue",
     intro: "内容区域主视觉配色，正常、进行中颜色",
   },
   {
-    color: colorScheme.indigo,
-    copy: "colorScheme.indigo",
+    color: ColorScheme.indigo,
+    copy: "ColorScheme.indigo",
     intro: "弹窗内标题文字、内容区域标题文字",
   },
   {
-    color: colorScheme.yellow,
-    copy: "colorScheme.yellow",
+    color: ColorScheme.yellow,
+    copy: "ColorScheme.yellow",
     intro: "收藏选中色",
   },
   {
-    color: colorScheme.red,
-    copy: "colorScheme.red",
+    color: ColorScheme.red,
+    copy: "ColorScheme.red",
     intro: "已拒绝颜色、被禁用颜色",
   },
   {
-    color: colorScheme.green,
-    copy: "colorScheme.green",
+    color: ColorScheme.green,
+    copy: "ColorScheme.green",
     intro: "正常、进行中颜色",
   },
   {
-    color: colorScheme.grey,
-    copy: "colorScheme.grey",
+    color: ColorScheme.grey,
+    copy: "ColorScheme.grey",
     intro: "正常、进行中颜色",
   },
 ];
 
 let borderColors = [
   {
-    color: colorScheme.border.main,
-    copy: "colorScheme.border.main",
+    color: ColorScheme.border.main,
+    copy: "ColorScheme.border.main",
     intro: "边框颜色",
   },
   {
-    color: colorScheme.border.divider,
-    copy: "colorScheme.border.divider",
+    color: ColorScheme.border.divider,
+    copy: "ColorScheme.border.divider",
     intro: "分割线颜色",
   },
   {
-    color: colorScheme.border.hover,
-    copy: "colorScheme.border.hover",
+    color: ColorScheme.border.hover,
+    copy: "ColorScheme.border.hover",
     intro: "边框 hover 颜色(一些场景会加阴影 2px hsla(223, 93%, 35%, 0.3))",
   },
   {
-    color: colorScheme.border.highlight,
-    copy: "colorScheme.border.highlight",
+    color: ColorScheme.border.highlight,
+    copy: "ColorScheme.border.highlight",
     intro: "边框高亮颜色颜色",
   },
 ];
 
 let fontColors = [
   {
-    color: colorScheme.font.main,
-    copy: "colorScheme.font.main",
+    color: ColorScheme.font.main,
+    copy: "ColorScheme.font.main",
     intro: "文字主色",
   },
   {
-    color: colorScheme.font.title,
-    copy: "colorScheme.font.title",
+    color: ColorScheme.font.title,
+    copy: "ColorScheme.font.title",
     intro: "弹窗内标题文字、内容区域标题文字",
   },
   {
-    color: colorScheme.font.tableContent,
-    copy: "colorScheme.font.tableContent",
+    color: ColorScheme.font.tableContent,
+    copy: "ColorScheme.font.tableContent",
     intro: "表格内文字",
   },
   {
-    color: colorScheme.font.label,
-    copy: "colorScheme.font.label",
+    color: ColorScheme.font.label,
+    copy: "ColorScheme.font.label",
     intro: "label文字颜色，左边导航栏未选中文字文案颜色",
   },
   {
-    color: colorScheme.font.secondary,
-    copy: "colorScheme.font.secondary",
+    color: ColorScheme.font.secondary,
+    copy: "ColorScheme.font.secondary",
     intro: "内容区域文字、输入框内文字、面包屑除最后一级文字颜色",
   },
   {
-    color: colorScheme.font.placeholder,
-    copy: "colorScheme.font.placeholder",
+    color: ColorScheme.font.placeholder,
+    copy: "ColorScheme.font.placeholder",
     intro: "内容区域文字、输入框内文字、面包屑除最后一级文字颜色",
   },
   {
-    color: colorScheme.font.link,
-    copy: "colorScheme.font.link",
+    color: ColorScheme.font.link,
+    copy: "ColorScheme.font.link",
     intro: "文案选中颜色",
   },
   {
-    color: colorScheme.font.hoverLink,
-    copy: "colorScheme.font.hoverLink",
+    color: ColorScheme.font.hoverLink,
+    copy: "ColorScheme.font.hoverLink",
     intro: "文案选中颜色",
   },
   {
-    color: colorScheme.font.activeLink,
-    copy: "colorScheme.font.activeLink",
+    color: ColorScheme.font.activeLink,
+    copy: "ColorScheme.font.activeLink",
     intro: "点击瞬间颜色",
   },
 ];
@@ -227,7 +227,7 @@ let styleBorders = css`
   margin: 8px;
   min-width: 200px;
   font-size: 13px;
-  color: ${colorScheme.font.secondary};
+  color: ${ColorScheme.font.secondary};
 `;
 
 let styleUnderline = css`

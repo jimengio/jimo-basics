@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { css, cx } from "emotion";
 import { DocDemo } from "@jimengio/doc-frame";
-import { colorScheme } from "../../../src/color-scheme";
+import { ColorScheme } from "../../../src/color-scheme";
 import { row, rowMiddle, center, Space } from "@jimengio/flex-styles";
 import copy from "copy-to-clipboard";
 
@@ -31,11 +31,11 @@ let styleCopy = css`
   font-size: 12px;
   width: 200px;
   cursor: pointer;
-  color: ${colorScheme.font.secondary};
+  color: ${ColorScheme.font.secondary};
   position: relative;
 
   :hover {
-    color: ${colorScheme.font.hoverLink};
+    color: ${ColorScheme.font.hoverLink};
   }
 `;
 

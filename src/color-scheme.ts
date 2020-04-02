@@ -1,4 +1,4 @@
-export let colorScheme = {
+export let ColorScheme = {
   /** 顶部栏主视觉配色，顶部栏背景色 */
   indigo: "hsla(222, 94%, 38%, 1)",
   /** 内容区域主视觉配色，正常、进行中颜色 */
