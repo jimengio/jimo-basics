@@ -11,7 +11,7 @@ let textSizes = [
   },
   {
     title: "标题行高",
-    code: "45px(TODO)",
+    code: "22px",
   },
   {
     title: "标题外边距",
