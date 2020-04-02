@@ -12,11 +12,21 @@ import DemoLoadingIndicator from "./demo/loading-indicator";
 import DemoClampText from "./demo/clamp-text";
 import DemoTextTooltip from "./demo/text-tooltip";
 import DemoLabeledAttributes from "./demo/labeled-attributes";
+import DemoColorScheme from "./demo/color-scheme";
+import DemoLayoutSizes from "./demo/layout-sizes";
 
 let items: ISidebarEntry[] = [
   {
     title: "Buttons",
     path: genRouter.buttons.name,
+  },
+  {
+    title: "Color Scheme",
+    path: genRouter.colorScheme.name,
+  },
+  {
+    title: "Layout Sizes",
+    path: genRouter.layoutSizes.name,
   },
   {
     title: "Tabs",
@@ -61,6 +71,10 @@ const renderChildPage = (routerTree: GenRouterTypeMain) => {
         return <DemoTextTooltip />;
       case "labeled-attributes":
         return <DemoLabeledAttributes />;
+      case "color-scheme":
+        return <DemoColorScheme />;
+      case "layout-sizes":
+        return <DemoLayoutSizes />;
       default:
         return <HashRedirect to={genRouter.buttons.name} noDelay></HashRedirect>;
     }
