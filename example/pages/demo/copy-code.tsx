@@ -33,6 +33,7 @@ let styleCopy = css`
   cursor: pointer;
   color: ${ColorScheme.font.secondary};
   position: relative;
+  white-space: pre;
 
   :hover {
     color: ${ColorScheme.font.hoverLink};

@@ -2,25 +2,24 @@ import React, { FC, useState } from "react";
 import { css, cx } from "emotion";
 import { DocDemo } from "@jimengio/doc-frame";
 import { ColorScheme } from "../../../src/color-scheme";
-import { row, rowMiddle, center, Space } from "@jimengio/flex-styles";
-import copy from "copy-to-clipboard";
-import CopyCode from "./copied";
+import { row, rowMiddle, center, Space, expand } from "@jimengio/flex-styles";
+import CopyCode from "./copy-code";
 
 let mainColors = [
   {
-    color: ColorScheme.indigo,
-    copy: "ColorScheme.indigo",
-    intro: "(主题色) 弹窗内标题文字、内容区域标题文字",
-  },
-  {
-    color: ColorScheme.blue,
-    copy: "ColorScheme.blue",
-    intro: "内容区域主视觉配色，正常、进行中颜色",
+    color: ColorScheme.theme,
+    copy: "ColorScheme.theme",
+    intro: "主题色",
   },
   {
     color: ColorScheme.indigo,
     copy: "ColorScheme.indigo",
     intro: "弹窗内标题文字、内容区域标题文字",
+  },
+  {
+    color: ColorScheme.blue,
+    copy: "ColorScheme.blue",
+    intro: "内容区域主视觉配色，正常、进行中颜色",
   },
   {
     color: ColorScheme.yellow,
@@ -154,7 +153,7 @@ let DemoColorScheme: FC<{}> = React.memo((props) => {
               <Space width={16} />
               <CopyCode code={theme.copy} />
               <Space width={16} />
-              <div className={styleIntro}>{intro}</div>
+              <div className={cx(expand, styleIntro)}>{intro}</div>
             </div>
           );
         })}
@@ -170,7 +169,7 @@ let DemoColorScheme: FC<{}> = React.memo((props) => {
               <Space width={16} />
               <CopyCode code={theme.copy} />
               <Space width={16} />
-              <div className={styleIntro} style={{ color: color }}>
+              <div className={cx(expand, styleIntro)} style={{ color: color }}>
                 {intro}
               </div>
             </div>
@@ -190,7 +189,7 @@ let DemoColorScheme: FC<{}> = React.memo((props) => {
               <Space width={16} />
               <div style={{ borderColor: color }} className={styleUnderline}></div>
               <Space width={16} />
-              <div className={styleIntro}>{intro}</div>
+              <div className={cx(expand, styleIntro)}>{intro}</div>
             </div>
           );
         })}
@@ -219,7 +218,7 @@ let styleIntro = css`
 `;
 
 let styleCase = css`
-  line-height: 28px;
+  line-height: 32px;
 `;
 
 let styleBorders = css`

@@ -1,89 +1,107 @@
-import React, { FC } from "react";
+import React, { FC, ReactText, ReactElement } from "react";
 import { css, cx } from "emotion";
 import { DocDemo } from "@jimengio/doc-frame";
-import { rowMiddle, Space } from "@jimengio/flex-styles";
-import CopyCode from "./copied";
+import { rowMiddle, Space, row, expand } from "@jimengio/flex-styles";
+import CopyCode from "./copy-code";
+import { LayoutSizes } from "../../../src/layout-sizes";
 
 let textSizes = [
   {
     title: "标题大小",
-    code: "16px",
+    value: LayoutSizes.titleSize,
+    code: "LayoutSizes.titleSize",
   },
   {
     title: "标题行高",
-    code: "22px",
+    value: LayoutSizes.titleLineHeight,
+    code: "LayoutSizes.titleLineHeight",
   },
   {
     title: "标题外边距",
-    code: "32px 0 16px 0",
+    value: LayoutSizes.titleMargin,
+    code: "LayoutSizes.titleMargin",
   },
   {
     title: "普通文字大小",
-    code: "14px",
+    value: LayoutSizes.textSize,
+    code: "LayoutSizes.textSize",
   },
   {
     title: "普通文字行高",
-    code: "20px",
+    value: LayoutSizes.textLineHeight,
+    code: "LayoutSizes.textLineHeight",
   },
 ];
 
 let uiSizes = [
   {
     title: "线框常用内边距",
-    code: "12px 16px",
+    value: LayoutSizes.boxPadding,
+    code: "LayoutSizes.boxPadding",
   },
   {
     title: "(特定)footer 间距",
-    code: "16px",
+    value: LayoutSizes.footerButtonsSpace,
+    code: "LayoutSizes.footerButtonsSpace",
   },
   {
     title: "元素 border 到另一个元素 border 间距",
-    code: "12px",
+    value: LayoutSizes.borderToBorderSpace,
+    code: "LayoutSizes.borderToBorderSpace",
   },
   {
     title: "元素 border 到另一个块文字间距",
-    code: "8px",
+    value: LayoutSizes.borderToTextSpace,
+    code: "LayoutSizes.borderToTextSpace",
   },
   {
     title: "文字到另一块文字间距",
-    code: "8px",
+    value: LayoutSizes.textToTextSpace,
+    code: "LayoutSizes.textToTextSpace",
   },
   {
     title: "图标到紧随的文字",
-    code: "4px",
+    value: LayoutSizes.iconToTextSpace,
+    code: "LayoutSizes.iconToTextSpace",
   },
 ];
 
 let tableSizes = [
   {
     title: "目前只能大致约定, 以 40 为单位",
-    code: "120px 160px 200px...",
+    value: "120px 160px 200px...",
+    code: `n * LayoutSizes.tableColumnWidthUnit`,
   },
 ];
 
 let formSizes = [
   {
     title: "label 区域默认宽度",
-    code: "120px",
+    value: LayoutSizes.labelAreaWidth,
+    code: "LayoutSizes.labelAreaWidth",
   },
   {
     title: "input/textarea/select 常用的统一宽度",
-    code: "220px",
+    value: LayoutSizes.formControlAreaBaseWidth,
+    code: "LayoutSizes.formControlAreaBaseWidth",
   },
   {
     title: "表单内上下内边距, 跟按钮之间的间距",
-    code: "16px",
+    value: LayoutSizes.formPaddingSpace,
+    code: "LayoutSizes.formPaddingSpace",
   },
 ];
 
 let listSizes = [
   {
     title: "List item 高度(含图标文字的情况)",
-    code: "36px",
+    value: LayoutSizes.listItemHeight,
+    code: "LayoutSizes.listItemHeight",
   },
   {
     title: "List item 纵向内边距",
-    code: "8px",
+    value: LayoutSizes.lineItemPadding,
+    code: "LayoutSizes.lineItemPadding",
   },
 ];
 
@@ -93,29 +111,30 @@ let DemoLayoutSizes: FC<{}> = React.memo((props) => {
   /** Effects */
   /** Renderers */
 
-  let renderLine = (x: { title: string; code: string }) => {
+  let renderLine = (x: { title: string; value: ReactText; code: ReactText }) => {
     return (
-      <div className={cx(rowMiddle, styleLine)}>
-        <div className={styleIntro}>{x.title}</div>
+      <div className={cx(row, styleLine)}>
+        <div className={cx(expand, styleIntro)}>{x.title}</div>
         <Space width={16} />
-        <CopyCode code={x.code} />
+        <CopyCode code={`${x.value}`} />
+        <CopyCode code={`${x.code}`} />
       </div>
     );
   };
 
   return (
     <div className={styleContainer}>
-      <DocDemo title="文字大小行高">
+      <DocDemo className={styleDemo} title="文字大小行高">
         {textSizes.map((x) => {
           return renderLine(x);
         })}
       </DocDemo>
-      <DocDemo title="页面布局常用尺寸">
+      <DocDemo className={styleDemo} title="页面布局常用尺寸">
         {uiSizes.map((x) => {
           return renderLine(x);
         })}
       </DocDemo>
-      <DocDemo title="表格(Table)内布局相关">
+      <DocDemo className={styleDemo} title="表格(Table)内布局相关">
         {tableSizes.map((x) => {
           return renderLine(x);
         })}
@@ -137,7 +156,6 @@ let DemoLayoutSizes: FC<{}> = React.memo((props) => {
 export default DemoLayoutSizes;
 
 let styleIntro = css`
-  width: 66%;
   font-size: 14px;
   line-height: 30px;
 `;
@@ -152,4 +170,8 @@ let styleLine = css`
 
 let styleContainer = css`
   padding-bottom: 200px;
+`;
+
+let styleDemo = css`
+  max-width: 100%;
 `;
