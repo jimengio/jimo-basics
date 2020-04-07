@@ -57,7 +57,7 @@ const styleButton = css`
   display: inline-flex;
   height: 32px;
   line-height: 32px;
-  padding: 0 24px;
+  padding: 0 16px;
   color: ${themeColor};
   border-radius: 2px;
   cursor: pointer;
@@ -84,6 +84,7 @@ let styleFilled = css`
 
 let styleBordered = css`
   border: 1px solid ${themeColor};
+  padding: 0 15px;
 
   :hover {
     opacity: 0.7;
