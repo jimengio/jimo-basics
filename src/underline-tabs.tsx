@@ -50,9 +50,9 @@ let styleUnderlineTab = css`
   margin-right: 4px;
   transition-duration: 240ms;
   line-height: 28px;
-  padding: 0 12px;
-  min-width: 56px;
+  min-width: 20px;
   text-align: center;
+  margin-right: 24px;
 
   :hover {
     background-color: hsla(0, 0%, 98%, 1);
