@@ -5,13 +5,17 @@ import { getLink } from "util/link";
 import JimoTabs, { IJimoTabItem } from "../../../src/jimo-tabs";
 import UnderlineTabs from "../../../src/underline-tabs";
 
-let items: IJimoTabItem[] = [{ title: "A", value: "a" }, { title: "This is b", value: "b" }, { title: "c", value: "c" }];
+let items: IJimoTabItem[] = [
+  { title: "数据 A", value: "a" },
+  { title: "数据 This is b", value: "b" },
+  { title: "数据 c", value: "c" },
+];
 
 let codeTabs = `
 let items: IJimoTabItem[] = [
-  { title: "A", value: "a" },
-  { title: "This is b", value: "b" },
-  { title: "c", value: "c" },
+  { title: "数据 A", value: "a" },
+  { title: "数据 This is b", value: "b" },
+  { title: "数据 c", value: "c" },
 ];
 
 <JimoTabs
