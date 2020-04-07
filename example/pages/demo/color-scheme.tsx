@@ -7,19 +7,14 @@ import CopyCode from "./copy-code";
 
 let mainColors = [
   {
-    color: ColorScheme.theme,
-    copy: "ColorScheme.theme",
-    intro: "主题色",
-  },
-  {
     color: ColorScheme.indigo,
     copy: "ColorScheme.indigo",
-    intro: "弹窗内标题文字、内容区域标题文字",
+    intro: "顶部栏主视觉配色，顶部栏背景色",
   },
   {
-    color: ColorScheme.blue,
+    color: ColorScheme.theme,
     copy: "ColorScheme.blue",
-    intro: "内容区域主视觉配色，正常、进行中颜色",
+    intro: "内容区域主视觉配色，正常、进行中颜色（主题色）",
   },
   {
     color: ColorScheme.yellow,
