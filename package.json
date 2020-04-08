@@ -25,7 +25,6 @@
     "@jimengio/flex-styles": "^0.1.6",
     "@jimengio/router-code-generator": "^0.2.6",
     "@jimengio/ruled-router": "^0.2.25",
-    "@jimengio/shared-utils": "^0.1.5",
     "@types/node": "^13.11.0",
     "@types/prettier": "^2.0.0",
     "@types/react": "^16.9.32",
@@ -62,8 +61,7 @@
     "webpack-hud": "^0.1.2"
   },
   "peerDependencies": {
-    "@jimengio/flex-styles": "^0.1.6",
-    "@jimengio/shared-utils": "^0.1.5"
+    "@jimengio/flex-styles": "^0.1.6"
   },
   "dependencies": {
     "emotion": "^10.0.27",
