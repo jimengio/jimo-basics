@@ -13,7 +13,7 @@ let JimoButton: FC<{
   /** special style for cancel button, with very shallow border color */
   canceling?: boolean;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent<any, MouseEvent>) => void;
+  onClick: (event: React.MouseEvent<any, MouseEvent>) => void;
 }> = React.memo((props) => {
   /** Methods */
   /** Effects */
