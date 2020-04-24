@@ -36,7 +36,8 @@ let JimoButton: FC<{
         if (props.disabled) {
           return;
         }
-        props.onClick(event);
+
+        props.onClick?.(event);
       }}
     >
       {hasPrepend ? (

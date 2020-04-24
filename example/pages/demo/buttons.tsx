@@ -32,7 +32,7 @@ let DemoButtons: FC<{}> = React.memo((props) => {
       <DocDemo title={"Basic button"} link={getLink("buttons.tsx")} className={styleDemo}>
         <DocSnippet code={codeButton} />
         <div>
-          <JimoButton text={"DEMO"} onClick={() => {}} />
+          <JimoButton text={"DEMO"} onClick={null} />
           <Space width={8} />
           <JimoButton text={"DEMO"} onClick={() => {}} disabled />
         </div>
