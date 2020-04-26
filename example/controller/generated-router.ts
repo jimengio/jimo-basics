@@ -12,7 +12,7 @@ function qsStringify(queries: { [k: string]: string }) {
 
 // generated
 
-// Generated with router-code-generator@0.2.6
+// Generated with router-code-generator@0.2.7
 
 export let genRouter = {
   home: {
@@ -69,6 +69,12 @@ export let genRouter = {
     path: () => `/text-tooltip`,
     go: () => switchPath(`/text-tooltip`),
   },
+  tooltipWrapper: {
+    name: "tooltip-wrapper",
+    raw: "tooltip-wrapper",
+    path: () => `/tooltip-wrapper`,
+    go: () => switchPath(`/tooltip-wrapper`),
+  },
   labeledAttributes: {
     name: "labeled-attributes",
     raw: "labeled-attributes",
@@ -83,20 +89,23 @@ export let genRouter = {
   },
 };
 
-export type GenRouterTypeMain =
-  | GenRouterTypeTree["home"]
-  | GenRouterTypeTree["colorScheme"]
-  | GenRouterTypeTree["layoutSizes"]
-  | GenRouterTypeTree["buttons"]
-  | GenRouterTypeTree["tabs"]
-  | GenRouterTypeTree["todo"]
-  | GenRouterTypeTree["loadingIndicator"]
-  | GenRouterTypeTree["clampText"]
-  | GenRouterTypeTree["textTooltip"]
-  | GenRouterTypeTree["labeledAttributes"]
-  | GenRouterTypeTree["$"];
+/** Deprecating, use GenRouterTypeTree["next"] instead */
+export type GenRouterTypeMain = GenRouterTypeTree["next"];
 
 export interface GenRouterTypeTree {
+  next:
+    | GenRouterTypeTree["home"]
+    | GenRouterTypeTree["colorScheme"]
+    | GenRouterTypeTree["layoutSizes"]
+    | GenRouterTypeTree["buttons"]
+    | GenRouterTypeTree["tabs"]
+    | GenRouterTypeTree["todo"]
+    | GenRouterTypeTree["loadingIndicator"]
+    | GenRouterTypeTree["clampText"]
+    | GenRouterTypeTree["textTooltip"]
+    | GenRouterTypeTree["tooltipWrapper"]
+    | GenRouterTypeTree["labeledAttributes"]
+    | GenRouterTypeTree["$"];
   home: {
     name: "home";
     params: {};
@@ -147,6 +156,12 @@ export interface GenRouterTypeTree {
   };
   textTooltip: {
     name: "text-tooltip";
+    params: {};
+    query: {};
+    next: null;
+  };
+  tooltipWrapper: {
+    name: "tooltip-wrapper";
     params: {};
     query: {};
     next: null;

@@ -10,6 +10,7 @@ export const routerRules: IRouteRule[] = [
   { path: "loading-indicator" },
   { path: "clamp-text" },
   { path: "text-tooltip" },
+  { path: "tooltip-wrapper" },
   { path: "labeled-attributes" },
   { path: "", name: "home" },
 ];

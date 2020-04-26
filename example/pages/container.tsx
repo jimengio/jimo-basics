@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { css, cx } from "emotion";
 
 import { HashRedirect, findRouteTarget } from "@jimengio/ruled-router/lib/dom";
-import { genRouter, GenRouterTypeMain } from "controller/generated-router";
+import { genRouter, GenRouterTypeTree } from "controller/generated-router";
 import { DocSidebar, ISidebarEntry } from "@jimengio/doc-frame";
 import { fullscreen, row, expand } from "@jimengio/flex-styles";
 import DemoButtons from "./demo/buttons";
@@ -14,6 +14,7 @@ import DemoTextTooltip from "./demo/text-tooltip";
 import DemoLabeledAttributes from "./demo/labeled-attributes";
 import DemoColorScheme from "./demo/color-scheme";
 import DemoLayoutSizes from "./demo/layout-sizes";
+import DemoTooltipWrapper from "./demo/tooltip-wrapper";
 
 let items: ISidebarEntry[] = [
   {
@@ -45,8 +46,12 @@ let items: ISidebarEntry[] = [
     path: genRouter.clampText.name,
   },
   {
-    title: "Text tooltip",
+    title: "Clamp text with tooltip",
     path: genRouter.textTooltip.name,
+  },
+  {
+    title: "useTooltip",
+    path: genRouter.tooltipWrapper.name,
   },
   {
     title: "Labeled attributes",
@@ -54,7 +59,7 @@ let items: ISidebarEntry[] = [
   },
 ];
 
-const renderChildPage = (routerTree: GenRouterTypeMain) => {
+const renderChildPage = (routerTree: GenRouterTypeTree["next"]) => {
   if (routerTree != null) {
     switch (routerTree.name) {
       case "buttons":
@@ -75,6 +80,8 @@ const renderChildPage = (routerTree: GenRouterTypeMain) => {
         return <DemoColorScheme />;
       case "layout-sizes":
         return <DemoLayoutSizes />;
+      case "tooltip-wrapper":
+        return <DemoTooltipWrapper />;
       default:
         return <HashRedirect to={genRouter.buttons.name} noDelay></HashRedirect>;
     }
@@ -90,7 +97,7 @@ let onSwitchPage = (path: string) => {
 };
 
 let Container: FC<{
-  router: GenRouterTypeMain;
+  router: GenRouterTypeTree["next"];
 }> = React.memo((props) => {
   /** Methods */
   /** Effects */

@@ -5,6 +5,8 @@ export { default as TodoFeature } from "./todo-feature";
 export { default as LoadingIndicator } from "./loading-indicator";
 export { default as LoadingArea } from "./loading-area";
 export { default as ClampText, IClampTextProps } from "./clamp-text";
+export { useTooltip } from "./tooltip";
+export { default as TooltipWrapper } from "./tooltip-wrapper";
 export { default as LabeledAttributes, ILabeledAttribute } from "./labeled-attributes";
 
 export { ColorScheme } from "./color-scheme";
