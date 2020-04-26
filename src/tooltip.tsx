@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect } from "react";
+import React, { FC, useRef, useEffect, useState, CSSProperties } from "react";
 import ReactDOM from "react-dom";
 import { css, cx } from "emotion";
 import { CSSTransition } from "react-transition-group";
@@ -59,6 +59,92 @@ let BasicTooltip: FC<{
 });
 
 export default BasicTooltip;
+
+export interface ITooltipWrapperProps {
+  text: React.ReactNode;
+  tooltipClassName?: string;
+  /** defaults to 160ms, for both enter and leave */
+  delay?: number;
+  /** respond to clicks on text, not including tooltop */
+  onTextClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}
+
+export let useTooltip = (props: ITooltipWrapperProps) => {
+  let elRef = useRef<HTMLDivElement>();
+  let enteringTimeoutRef = useRef<NodeJS.Timeout>(null);
+  let leavingTimeoutRef = useRef<NodeJS.Timeout>(null);
+
+  let [showToopTip, setShowTooltip] = useState(false);
+  let [pointer, setPointer] = useState({ x: 0, top: 0, bottom: 0 });
+
+  let delay = props.delay ?? 160;
+
+  /** Plugins */
+  /** Methods */
+
+  let handleEnter = () => {
+    console.log("enter...");
+    if (enteringTimeoutRef.current != null) {
+      return;
+    }
+
+    if (leavingTimeoutRef.current != null) {
+      clearTimeout(leavingTimeoutRef.current);
+      leavingTimeoutRef.current = null;
+    }
+
+    enteringTimeoutRef.current = setTimeout(() => {
+      setShowTooltip(true);
+      enteringTimeoutRef.current = null;
+    }, delay);
+  };
+
+  let handleLeave = () => {
+    if (leavingTimeoutRef.current != null) {
+      return;
+    }
+
+    if (enteringTimeoutRef.current != null) {
+      clearTimeout(enteringTimeoutRef.current);
+      enteringTimeoutRef.current = null;
+    }
+
+    leavingTimeoutRef.current = setTimeout(() => {
+      setShowTooltip(false);
+      leavingTimeoutRef.current = null;
+    }, delay);
+  };
+
+  /** Effects */
+
+  useEffect(() => {
+    elRef.current.addEventListener("mouseenter", handleEnter);
+    elRef.current.addEventListener("mouseleave", handleLeave);
+
+    let rect = elRef.current.getBoundingClientRect() as DOMRect;
+
+    setPointer({
+      x: rect.left + elRef.current.offsetWidth / 2,
+      top: rect.top,
+      bottom: rect.bottom,
+    });
+
+    return () => {
+      elRef.current.removeEventListener("mouseenter", handleEnter);
+      elRef.current.removeEventListener("mouseleave", handleLeave);
+    };
+  }, []);
+
+  /** Renderers */
+
+  let ui = <BasicTooltip pointer={pointer} visible={showToopTip} className={props.tooltipClassName} text={props.text} />;
+
+  return {
+    ui,
+    ref: elRef,
+    boxStyle: styleInlineContainer,
+  };
+};
 
 let styleTooptip = css`
   position: fixed;
@@ -166,4 +252,8 @@ let styleBelow = css`
     content: "";
     background-color: transparent;
   }
+`;
+
+let styleInlineContainer = css`
+  display: inline-block;
 `;
