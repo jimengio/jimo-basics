@@ -32,7 +32,8 @@ let BasicTooltip: FC<{
   }, []);
 
   let isLongText = typeof props.text === "string" && props.text.length > 100;
-  let showBelow = props.pointer.top < 240;
+  // 180 is a very rough value since exact height of tooltip is not easily grabbed
+  let showBelow = props.pointer.top < 180;
 
   /** Renderers */
   return ReactDOM.createPortal(
@@ -83,7 +84,6 @@ export let useTooltip = (props: ITooltipWrapperProps) => {
   /** Methods */
 
   let handleEnter = () => {
-    console.log("enter...");
     if (enteringTimeoutRef.current != null) {
       return;
     }
@@ -94,6 +94,14 @@ export let useTooltip = (props: ITooltipWrapperProps) => {
     }
 
     enteringTimeoutRef.current = setTimeout(() => {
+      let rect = elRef.current.getBoundingClientRect() as DOMRect;
+
+      setPointer({
+        x: rect.left + elRef.current.offsetWidth / 2,
+        top: rect.top,
+        bottom: rect.bottom,
+      });
+
       setShowTooltip(true);
       enteringTimeoutRef.current = null;
     }, delay);
@@ -120,14 +128,6 @@ export let useTooltip = (props: ITooltipWrapperProps) => {
   useEffect(() => {
     elRef.current.addEventListener("mouseenter", handleEnter);
     elRef.current.addEventListener("mouseleave", handleLeave);
-
-    let rect = elRef.current.getBoundingClientRect() as DOMRect;
-
-    setPointer({
-      x: rect.left + elRef.current.offsetWidth / 2,
-      top: rect.top,
-      bottom: rect.bottom,
-    });
 
     return () => {
       elRef.current.removeEventListener("mouseenter", handleEnter);
