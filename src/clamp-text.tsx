@@ -1,6 +1,6 @@
 import React, { FC, useState, useRef, CSSProperties, useReducer } from "react";
 import { css, cx } from "emotion";
-import BasicTooltip from "./tooltip";
+import BasicTooltip, { useTooltip } from "./tooltip";
 
 export interface IClampTextProps {
   /** defaults to 1 */
@@ -17,80 +17,29 @@ export interface IClampTextProps {
   delay?: number;
   /** respond to clicks on text, not including tooltop */
   onTextClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  /** defaults to `-` */
+  emptySymbol?: string;
 }
 
 let ClampText: FC<IClampTextProps> = React.memo((props) => {
-  let elRef = useRef<HTMLDivElement>();
-  let enteringTimeoutRef = useRef<NodeJS.Timeout>(null);
-  let leavingTimeoutRef = useRef<NodeJS.Timeout>(null);
-
-  let [showToopTip, setShowTooltip] = useState(false);
-  let [pointer, setPointer] = useState({ x: 0, top: 0, bottom: 0 });
-
   let lines = props.lines || 1;
-  let delay = props.delay ?? 160;
 
   /** Plugins */
+
+  let tooltipPlugin = useTooltip({
+    text: props.tooltipText || props.text,
+    tooltipClassName: props.tooltipClassName,
+    delay: props.delay,
+    shouldPop: (element) => {
+      return element.offsetHeight < element.scrollHeight || element.offsetWidth < element.scrollWidth;
+    },
+    onStatusChange: props.onTooltipStateChange,
+  });
+
   /** Methods */
 
-  let detectTruncated = () => {
-    let el = elRef.current;
-
-    let truncated = el.offsetHeight < el.scrollHeight || el.offsetWidth < el.scrollWidth;
-
-    if (props.addTooltip || props.onTooltipStateChange != null) {
-      let rect = el.getBoundingClientRect() as DOMRect;
-
-      setShowTooltip(truncated);
-      setPointer({
-        x: rect.left + el.offsetWidth / 2,
-        top: rect.top,
-        bottom: rect.bottom,
-      });
-
-      if (props.onTooltipStateChange != null) {
-        props.onTooltipStateChange(truncated);
-      }
-    }
-  };
-
-  let handleEnter = () => {
-    if (enteringTimeoutRef.current != null) {
-      return;
-    }
-
-    if (leavingTimeoutRef.current != null) {
-      clearTimeout(leavingTimeoutRef.current);
-      leavingTimeoutRef.current = null;
-    }
-
-    enteringTimeoutRef.current = setTimeout(() => {
-      detectTruncated();
-      enteringTimeoutRef.current = null;
-    }, delay);
-  };
-
-  let handleLeave = () => {
-    if (leavingTimeoutRef.current != null) {
-      return;
-    }
-
-    if (enteringTimeoutRef.current != null) {
-      clearTimeout(enteringTimeoutRef.current);
-      enteringTimeoutRef.current = null;
-    }
-
-    leavingTimeoutRef.current = setTimeout(() => {
-      setShowTooltip(false);
-      if (props.onTooltipStateChange != null && showToopTip) {
-        props.onTooltipStateChange(false);
-      }
-      leavingTimeoutRef.current = null;
-    }, delay);
-  };
-
   let onTextClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (props.onTextClick != null && event.target === elRef.current) {
+    if (props.onTextClick != null && event.target === tooltipPlugin.ref.current) {
       props.onTextClick(event);
     }
   };
@@ -102,24 +51,15 @@ let ClampText: FC<IClampTextProps> = React.memo((props) => {
     if (!props.addTooltip) {
       return null;
     }
-    return <BasicTooltip pointer={pointer} visible={showToopTip} className={props.tooltipClassName} text={props.tooltipText || props.text} />;
+    return tooltipPlugin.ui;
   };
+
+  let emptySymbol = props.emptySymbol ?? "-";
 
   if (lines === 1) {
     return (
-      <div
-        className={cx(styleSingleLine, props.className)}
-        style={props.style}
-        ref={elRef}
-        onMouseEnter={() => {
-          handleEnter();
-        }}
-        onMouseLeave={() => {
-          handleLeave();
-        }}
-        onClick={onTextClick}
-      >
-        {props.text}
+      <div className={cx(styleSingleLine, props.className)} style={props.style} ref={tooltipPlugin.ref} onClick={onTextClick}>
+        {props.text || emptySymbol}
         {renderTooltip()}
       </div>
     );
@@ -128,16 +68,10 @@ let ClampText: FC<IClampTextProps> = React.memo((props) => {
   return (
     <div
       className={styleClampText}
-      ref={elRef}
+      ref={tooltipPlugin.ref}
       style={{
         WebkitLineClamp: lines,
         ...props.style,
-      }}
-      onMouseEnter={() => {
-        handleEnter();
-      }}
-      onMouseLeave={() => {
-        handleLeave();
       }}
       onClick={onTextClick}
     >

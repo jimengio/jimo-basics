@@ -68,6 +68,9 @@ export interface ITooltipWrapperProps {
   delay?: number;
   /** respond to clicks on text, not including tooltop */
   onTextClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  /** detect if popup is really required */
+  shouldPop?: (element: HTMLElement) => boolean;
+  onStatusChange?: (visible: boolean) => void;
 }
 
 export let useTooltip = (props: ITooltipWrapperProps) => {
@@ -85,6 +88,11 @@ export let useTooltip = (props: ITooltipWrapperProps) => {
   /** Methods */
 
   let handleEnter = () => {
+    if (props.shouldPop != null) {
+      if (!props.shouldPop(elRef.current)) {
+        return;
+      }
+    }
     if (enteringTimeoutRef.current != null) {
       return;
     }
@@ -152,6 +160,10 @@ export let useTooltip = (props: ITooltipWrapperProps) => {
       window.removeEventListener("wheel", onWheel);
     };
   });
+
+  useEffect(() => {
+    props.onStatusChange?.(showToopTip);
+  }, [showToopTip]);
 
   /** Renderers */
 
