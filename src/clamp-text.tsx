@@ -17,6 +17,8 @@ export interface IClampTextProps {
   delay?: number;
   /** respond to clicks on text, not including tooltop */
   onTextClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  /** defaults to `-` */
+  emptySymbol?: string;
 }
 
 let ClampText: FC<IClampTextProps> = React.memo((props) => {
@@ -52,10 +54,12 @@ let ClampText: FC<IClampTextProps> = React.memo((props) => {
     return tooltipPlugin.ui;
   };
 
+  let emptySymbol = props.emptySymbol ?? "-";
+
   if (lines === 1) {
     return (
       <div className={cx(styleSingleLine, props.className)} style={props.style} ref={tooltipPlugin.ref} onClick={onTextClick}>
-        {props.text}
+        {props.text || emptySymbol}
         {renderTooltip()}
       </div>
     );

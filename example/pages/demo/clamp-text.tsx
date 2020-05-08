@@ -38,6 +38,14 @@ let DemoClampText: FC<{}> = React.memo((props) => {
           <ClampText lines={4} text={text} />
         </div>
       </DocDemo>
+
+      <DocDemo title={"Empty text"}>
+        <DocBlock content={empty} />
+        <DocSnippet code={emptyCode} />
+        <div>
+          <ClampText text={""} />
+        </div>
+      </DocDemo>
     </div>
   );
 });
@@ -62,3 +70,11 @@ let codeInline = `<ClampText text={text} />`;
 let code2Lines = `<ClampText lines={2} text={text} />`;
 
 let code4Lines = `<ClampText lines={4} text={text} />`;
+
+let empty = `
+\`text\` 传入空字符串时默认会显示 \`-\`. 默认的符号可以通过 \`emptySymbol\` 改写.
+`;
+
+let emptyCode = `
+<ClampText text={""} />
+`;
