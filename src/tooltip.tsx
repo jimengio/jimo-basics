@@ -74,6 +74,7 @@ export let useTooltip = (props: ITooltipWrapperProps) => {
   let elRef = useRef<HTMLDivElement>();
   let enteringTimeoutRef = useRef<NodeJS.Timeout>(null);
   let leavingTimeoutRef = useRef<NodeJS.Timeout>(null);
+  let wheelListenerRef = useRef<() => void>();
 
   let [showToopTip, setShowTooltip] = useState(false);
   let [pointer, setPointer] = useState({ x: 0, top: 0, bottom: 0 });
@@ -123,6 +124,12 @@ export let useTooltip = (props: ITooltipWrapperProps) => {
     }, delay);
   };
 
+  wheelListenerRef.current = () => {
+    if (showToopTip) {
+      setShowTooltip(false);
+    }
+  };
+
   /** Effects */
 
   useEffect(() => {
@@ -134,6 +141,17 @@ export let useTooltip = (props: ITooltipWrapperProps) => {
       elRef.current.removeEventListener("mouseleave", handleLeave);
     };
   }, []);
+
+  useEffect(() => {
+    let onWheel = () => {
+      wheelListenerRef.current?.();
+    };
+
+    window.addEventListener("wheel", onWheel);
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+    };
+  });
 
   /** Renderers */
 
