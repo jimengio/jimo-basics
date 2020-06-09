@@ -2,8 +2,8 @@ import React, { FC } from "react";
 import { css, cx } from "emotion";
 
 let StatusTag: FC<{
-  /** 正常, 禁用 */
-  disabled: boolean;
+  /** normal/disabled, false by defaut, which means normal */
+  disabled?: boolean;
   normalText?: string;
   disabledText?: string;
   /** special method for overwritting display text */
