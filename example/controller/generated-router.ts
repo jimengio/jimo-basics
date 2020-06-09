@@ -81,6 +81,12 @@ export let genRouter = {
     path: () => `/labeled-attributes`,
     go: () => switchPath(`/labeled-attributes`),
   },
+  statusTag: {
+    name: "status-tag",
+    raw: "status-tag",
+    path: () => `/status-tag`,
+    go: () => switchPath(`/status-tag`),
+  },
   $: {
     name: "home",
     raw: "",
@@ -105,6 +111,7 @@ export interface GenRouterTypeTree {
     | GenRouterTypeTree["textTooltip"]
     | GenRouterTypeTree["tooltipWrapper"]
     | GenRouterTypeTree["labeledAttributes"]
+    | GenRouterTypeTree["statusTag"]
     | GenRouterTypeTree["$"];
   home: {
     name: "home";
@@ -168,6 +175,12 @@ export interface GenRouterTypeTree {
   };
   labeledAttributes: {
     name: "labeled-attributes";
+    params: {};
+    query: {};
+    next: null;
+  };
+  statusTag: {
+    name: "status-tag";
     params: {};
     query: {};
     next: null;

@@ -4,6 +4,7 @@ import { DocDemo, DocBlock, DocSnippet } from "@jimengio/doc-frame";
 import { getLink } from "../../util/link";
 import JimoButton from "../../../src/jimo-button";
 import { Space } from "@jimengio/flex-styles";
+import JimoLink from "../../../src/jimo-link";
 
 let codeButton = `
 <JimoButton text={"DEMO"} onClick={() => {}} />
@@ -62,6 +63,26 @@ let DemoButtons: FC<{}> = React.memo((props) => {
         <Space width={8} />
         <JimoButton prepend={`+`} text={"Cancel"} fillColor disabled onClick={() => {}} />
       </DocDemo>
+
+      <DocDemo title={"Links as button"} className={styleDemo}>
+        <DocSnippet code={codeLink} />
+
+        <div>
+          <JimoLink
+            text="Open"
+            onClick={() => {
+              console.log("Clicked");
+            }}
+          />
+          <Space width={8} />
+          <JimoLink
+            text="Confirm"
+            onClick={() => {
+              console.log("Clicked");
+            }}
+          />
+        </div>
+      </DocDemo>
     </div>
   );
 });
@@ -69,3 +90,5 @@ let DemoButtons: FC<{}> = React.memo((props) => {
 export default DemoButtons;
 
 let styleDemo = css``;
+
+let codeLink = `<JimoLink text="Open" onClick={() => {}} />`;
