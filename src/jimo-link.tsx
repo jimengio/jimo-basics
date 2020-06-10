@@ -4,7 +4,7 @@ import { css, cx } from "emotion";
 interface IProps extends React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> {
   text?: ReactNode;
   className?: string;
-  onClick: () => void;
+  onClick: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
 /** Jimo 主题的按钮, 定制了颜色样式 */
@@ -13,8 +13,11 @@ let JimoLink: FC<IProps> = React.memo((props) => {
   /** Methods */
   /** Effects */
   /** Renderers */
+
+  let { text, className, onClick, ...restProps } = props;
+
   return (
-    <a tabIndex={0} className={cx(styleLink, props.className)} onClick={props.onClick}>
+    <a tabIndex={0} className={cx(styleLink, props.className)} onClick={props.onClick} {...restProps}>
       {props.text || props.children || "-"}
     </a>
   );
