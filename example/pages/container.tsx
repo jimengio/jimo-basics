@@ -15,6 +15,7 @@ import DemoLabeledAttributes from "./demo/labeled-attributes";
 import DemoColorScheme from "./demo/color-scheme";
 import DemoLayoutSizes from "./demo/layout-sizes";
 import DemoTooltipWrapper from "./demo/tooltip-wrapper";
+import DemoStatusTag from "./demo/status-tag";
 
 let items: ISidebarEntry[] = [
   {
@@ -57,6 +58,10 @@ let items: ISidebarEntry[] = [
     title: "Labeled attributes",
     path: genRouter.labeledAttributes.name,
   },
+  {
+    title: "Status Tag",
+    path: genRouter.statusTag.name,
+  },
 ];
 
 const renderChildPage = (routerTree: GenRouterTypeTree["next"]) => {
@@ -82,6 +87,8 @@ const renderChildPage = (routerTree: GenRouterTypeTree["next"]) => {
         return <DemoLayoutSizes />;
       case "tooltip-wrapper":
         return <DemoTooltipWrapper />;
+      case "status-tag":
+        return <DemoStatusTag />;
       default:
         return <HashRedirect to={genRouter.buttons.name} noDelay></HashRedirect>;
     }
