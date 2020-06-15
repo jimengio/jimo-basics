@@ -18,6 +18,7 @@ let codeArea = `
 
 let DemoLoadingIndicator: FC<{}> = React.memo((props) => {
   let [isLoading, setLoading] = useState(false);
+  let [antdStyle, setAntdStyle] = useState(false);
 
   /** Plugins */
   /** Methods */
@@ -39,13 +40,25 @@ let DemoLoadingIndicator: FC<{}> = React.memo((props) => {
               setLoading(!isLoading);
             }}
           />
+          <Space width={8} />
+          <JimoButton
+            text={"Antd"}
+            className={styleLink}
+            onClick={() => {
+              setAntdStyle(!antdStyle);
+            }}
+          />
         </div>
         <Space height={16} />
-        <LoadingArea isLoading={isLoading}>
+        <LoadingArea isLoading={isLoading} antdStyle={antdStyle}>
           <div className={styleChild}>Children</div>
         </LoadingArea>
 
         <DocSnippet code={codeArea} />
+      </DocDemo>
+
+      <DocDemo title="Antd Style">
+        <LoadingIndicator antdStyle />
       </DocDemo>
     </div>
   );
