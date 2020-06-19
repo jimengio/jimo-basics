@@ -7,6 +7,7 @@ import { CSSTransition } from "react-transition-group";
 let LoadingArea: FC<{
   isLoading?: boolean;
   className?: string;
+  antdStyle?: boolean;
 }> = React.memo((props) => {
   /** Plugins */
   /** Methods */
@@ -17,7 +18,7 @@ let LoadingArea: FC<{
       {props.children}
       <CSSTransition in={props.isLoading} timeout={200} classNames="fade-in-out" unmountOnExit>
         <div className={cx(center, styleCover)}>
-          <LoadingIndicator />
+          <LoadingIndicator antdStyle={props.antdStyle} />
         </div>
       </CSSTransition>
     </div>
