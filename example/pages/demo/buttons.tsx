@@ -33,7 +33,7 @@ let DemoButtons: FC<{}> = React.memo((props) => {
       <DocDemo title={"Basic button"} link={getLink("buttons.tsx")} className={styleDemo}>
         <DocSnippet code={codeButton} />
         <div>
-          <JimoButton text={"DEMO"} onClick={null} />
+          <JimoButton text={"DEMO"} onClick={null} data-action="demo action" />
           <Space width={8} />
           <JimoButton text={"DEMO"} onClick={() => {}} disabled />
         </div>
@@ -77,6 +77,7 @@ let DemoButtons: FC<{}> = React.memo((props) => {
           <Space width={8} />
           <JimoLink
             text="Confirm"
+            data-action="confirm demo"
             onClick={() => {
               console.log("Clicked");
             }}

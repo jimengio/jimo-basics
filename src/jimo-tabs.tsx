@@ -8,6 +8,7 @@ export interface IJimoTabItem {
   key?: string;
   value: string;
   title: string;
+  "data-entry"?: string;
 }
 
 /** 自定义 Tabs 组件, 选中时整个背景改变颜色 */
@@ -27,6 +28,7 @@ let JimoTabs: FC<{
           <div
             key={item.key || item.title}
             onClick={() => props.onClick(item)}
+            data-entry={item["data-entry"] || item.key || item.title}
             className={cx(
               styleTab,
               props.value === item.value ? styleSelected : null,
