@@ -13,3 +13,5 @@ export { default as StatusTag } from "./status-tag";
 
 export { ColorScheme } from "./color-scheme";
 export { LayoutSizes } from "./layout-sizes";
+
+export { attachJimoBasicsThemeVariables } from "./theme";
