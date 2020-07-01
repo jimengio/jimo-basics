@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import { css, cx } from "emotion";
+import { GlobalThemeVariables } from "./theme";
 
 interface JimoLinkProps extends React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> {
   text?: ReactNode;
@@ -16,7 +17,7 @@ let JimoLink: FC<JimoLinkProps> = React.memo((props) => {
   let { text, className, onClick, ...restProps } = props;
 
   return (
-    <a tabIndex={0} className={cx(styleLink, props.className)} {...restProps}>
+    <a tabIndex={0} className={cx(styleLink, GlobalThemeVariables.link, props.className)} {...restProps}>
       {props.text || props.children || "-"}
     </a>
   );

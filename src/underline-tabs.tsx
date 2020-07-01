@@ -2,6 +2,7 @@ import React, { FC, CSSProperties } from "react";
 import { css, cx } from "emotion";
 import { row } from "@jimengio/flex-styles";
 import { IJimoTabItem } from "./jimo-tabs";
+import { GlobalThemeVariables } from "./theme";
 
 let themeColor = "hsla(221, 100%, 61%, 1)";
 
@@ -18,13 +19,17 @@ export let UnderlineTabs: FC<{
   /** Effects */
   /** Renderers */
   return (
-    <div className={cx(row, styleUnderlineTabs, props.className)} style={props.style}>
+    <div className={cx(row, styleUnderlineTabs, GlobalThemeVariables.underlineTabs, props.className)} style={props.style}>
       {props.items.map((item) => {
         return (
           <div
             key={item.key || item.title}
             onClick={() => props.onClick(item)}
-            className={cx(styleUnderlineTab, props.value === item.value ? styleSelectedUnderline : null)}
+            className={cx(
+              styleUnderlineTab,
+              GlobalThemeVariables.underlineTabItem,
+              props.value === item.value ? cx(styleSelectedUnderline, GlobalThemeVariables.underlineTabSelected) : null
+            )}
           >
             {item.title}
           </div>

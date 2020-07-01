@@ -13,5 +13,6 @@ export const routerRules: IRouteRule[] = [
   { path: "tooltip-wrapper" },
   { path: "labeled-attributes" },
   { path: "status-tag" },
+  { path: "theme" },
   { path: "", name: "home" },
 ];

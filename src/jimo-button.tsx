@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from "react";
 import { css, cx } from "emotion";
 import { rowCenter } from "@jimengio/flex-styles";
 import { Space } from "@jimengio/flex-styles";
+import { GlobalThemeVariables } from "./theme";
 
 let themeColor = "hsla(221, 100%, 61%, 1)";
 
@@ -28,11 +29,12 @@ let JimoButton: FC<{
       className={cx(
         rowCenter,
         styleButton,
+        GlobalThemeVariables.buttonBase,
         props.className,
-        props.fillColor && !props.disabled ? styleFilled : null,
-        props.canceling && !props.disabled ? styleCanceling : null,
-        bordered ? styleBordered : null,
-        props.disabled ? styleDisabled : null
+        props.fillColor && !props.disabled ? cx(styleFilled, GlobalThemeVariables.buttonFilled) : null,
+        props.canceling && !props.disabled ? cx(styleCanceling, GlobalThemeVariables.buttonCanceling) : null,
+        bordered ? cx(styleBordered, GlobalThemeVariables.buttonBordered) : null,
+        props.disabled ? cx(styleDisabled, GlobalThemeVariables.buttonDisabled) : null
       )}
       data-action={props["data-action"] || props.text}
       onClick={(event) => {

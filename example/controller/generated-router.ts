@@ -87,6 +87,12 @@ export let genRouter = {
     path: () => `/status-tag`,
     go: () => switchPath(`/status-tag`),
   },
+  theme: {
+    name: "theme",
+    raw: "theme",
+    path: () => `/theme`,
+    go: () => switchPath(`/theme`),
+  },
   $: {
     name: "home",
     raw: "",
@@ -112,6 +118,7 @@ export interface GenRouterTypeTree {
     | GenRouterTypeTree["tooltipWrapper"]
     | GenRouterTypeTree["labeledAttributes"]
     | GenRouterTypeTree["statusTag"]
+    | GenRouterTypeTree["theme"]
     | GenRouterTypeTree["$"];
   home: {
     name: "home";
@@ -181,6 +188,12 @@ export interface GenRouterTypeTree {
   };
   statusTag: {
     name: "status-tag";
+    params: {};
+    query: {};
+    next: null;
+  };
+  theme: {
+    name: "theme";
     params: {};
     query: {};
     next: null;

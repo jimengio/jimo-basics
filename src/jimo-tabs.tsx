@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { css, cx } from "emotion";
 import { row } from "@jimengio/flex-styles";
+import { GlobalThemeVariables } from "./theme";
 
 let themeColor = "hsla(221, 100%, 61%, 1)";
 
@@ -22,7 +23,7 @@ let JimoTabs: FC<{
   /** Effects */
   /** Renderers */
   return (
-    <div className={styleTabs}>
+    <div className={cx(styleTabs, GlobalThemeVariables.tabs)}>
       {props.items.map((item, idx) => {
         return (
           <div
@@ -31,7 +32,8 @@ let JimoTabs: FC<{
             data-entry={item["data-entry"] || item.key || item.title}
             className={cx(
               styleTab,
-              props.value === item.value ? styleSelected : null,
+              GlobalThemeVariables.tabItem,
+              props.value === item.value ? cx(styleSelected, GlobalThemeVariables.tabSelected) : null,
               idx === 0 ? styleFirstTab : null,
               idx === props.items.length - 1 ? styleLastTab : null
             )}
