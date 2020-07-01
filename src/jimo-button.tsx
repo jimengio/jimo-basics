@@ -14,6 +14,8 @@ let JimoButton: FC<{
   canceling?: boolean;
   disabled?: boolean;
   onClick: (event: React.MouseEvent<any, MouseEvent>) => void;
+  /** data attribute hook passing to data-action */
+  "data-action"?: string;
 }> = React.memo((props) => {
   /** Methods */
   /** Effects */
@@ -22,7 +24,7 @@ let JimoButton: FC<{
   let bordered = !props.fillColor && !props.canceling && !props.disabled;
 
   return (
-    <div
+    <button
       className={cx(
         rowCenter,
         styleButton,
@@ -32,6 +34,7 @@ let JimoButton: FC<{
         bordered ? styleBordered : null,
         props.disabled ? styleDisabled : null
       )}
+      data-action={props["data-action"] || props.text}
       onClick={(event) => {
         if (props.disabled) {
           return;
@@ -47,7 +50,7 @@ let JimoButton: FC<{
         </>
       ) : null}
       {props.text}
-    </div>
+    </button>
   );
 });
 
@@ -66,6 +69,13 @@ const styleButton = css`
   transition-duration: 240ms;
   user-select: none;
   font-size: 14px;
+  background-color: white;
+  border: none;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
 `;
 
 let styleFilled = css`
