@@ -55,8 +55,8 @@ let DemoTextTooltip: FC<{}> = React.memo((props) => {
       </DocDemo>
 
       <DocDemo title="对于包含节点样式的组件的 text 展示">
-        <DocBlock content={contentDelay} />
-        <DocSnippet code={codeDelay} />
+        <DocBlock content={contentRichText} />
+        <DocSnippet code={codeRichText} lang="jsx" />
         <div className={styleNarrow}>
           <ClampText text={<a href="#">{text}</a>} tooltipText={text} addTooltip />
         </div>
@@ -111,4 +111,12 @@ let contentDelay = `
 
 let codeDelay = `
 <ClampText text={text} delay={800} addTooltip />
+`;
+
+let codeRichText = `
+ <ClampText text={<a href="#">{text}</a>} tooltipText={text} addTooltip />
+`;
+
+let contentRichText = `
+如果 text 部分包含样式, 而现实的 tooltip 内部只需要纯文本, 那么需要设置 \`tooltipText\` 属性来指定纯文本的内容.
 `;
