@@ -57,6 +57,11 @@ attachJimoBasicsThemeVariables({
   underlineTabs: emptyStyle,
   underlineTabItem: emptyStyle,
   underlineTabSelected: emptyStyle,
+
+  // loading area
+  loadingArea: emptyStyle,
+  loadingAreaCover: emptyStyle,
+  loadingAreaIndicator: emptyStyle,
 });
 `;
 
