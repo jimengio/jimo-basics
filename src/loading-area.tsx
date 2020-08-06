@@ -3,10 +3,13 @@ import { css, cx } from "emotion";
 import LoadingIndicator from "./loading-indicator";
 import { center } from "@jimengio/flex-styles";
 import { CSSTransition } from "react-transition-group";
+import { GlobalThemeVariables } from "./theme";
 
 let LoadingArea: FC<{
   isLoading?: boolean;
   className?: string;
+  coverClassName?: string;
+  indicatorClassName?: string;
   antdStyle?: boolean;
 }> = React.memo((props) => {
   /** Plugins */
@@ -14,11 +17,11 @@ let LoadingArea: FC<{
   /** Effects */
   /** Renderers */
   return (
-    <div className={cx(styleContainer, props.className)}>
+    <div className={cx(styleContainer, GlobalThemeVariables.loadingArea, props.className)}>
       {props.children}
       <CSSTransition in={props.isLoading} timeout={200} classNames="fade-in-out" unmountOnExit>
-        <div className={cx(center, styleCover)}>
-          <LoadingIndicator antdStyle={props.antdStyle} />
+        <div className={cx(center, styleCover, GlobalThemeVariables.loadingAreaCover, props.coverClassName)}>
+          <LoadingIndicator antdStyle={props.antdStyle} className={props.indicatorClassName} />
         </div>
       </CSSTransition>
     </div>

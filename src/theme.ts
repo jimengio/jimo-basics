@@ -23,6 +23,11 @@ export let GlobalThemeVariables = {
   underlineTabs: emptyStyle,
   underlineTabItem: emptyStyle,
   underlineTabSelected: emptyStyle,
+
+  // loading area
+  loadingArea: emptyStyle,
+  loadingAreaCover: emptyStyle,
+  loadingAreaIndicator: emptyStyle,
 };
 
 export let attachJimoBasicsThemeVariables = (customVariables: Partial<typeof GlobalThemeVariables>): void => {
