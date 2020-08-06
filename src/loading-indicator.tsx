@@ -2,6 +2,7 @@
 
 import React, { FC } from "react";
 import { css, cx, keyframes } from "emotion";
+import { GlobalThemeVariables } from "./theme";
 
 let LoadingIndicator: FC<{
   className?: string;
@@ -25,7 +26,7 @@ let LoadingIndicator: FC<{
   }
 
   return (
-    <div className={cx(styleSpinner, props.className)}>
+    <div className={cx(styleSpinner, GlobalThemeVariables.loadingAreaIndicator, props.className)}>
       <div className={cx(styleBounce, props.dotClassName, styleB1)}></div>
       <div className={cx(styleBounce, props.dotClassName, styleB2)}></div>
       <div className={cx(styleBounce, props.dotClassName)}></div>
