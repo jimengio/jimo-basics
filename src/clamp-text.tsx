@@ -22,7 +22,7 @@ export interface IClampTextProps {
 }
 
 let ClampText: FC<IClampTextProps> = React.memo((props) => {
-  let lines = props.lines || 1;
+  let lines = props.lines || ClampText.defaultProps.lines || 1;
 
   /** Plugins */
 
@@ -48,10 +48,13 @@ let ClampText: FC<IClampTextProps> = React.memo((props) => {
   /** Renderers */
 
   let renderTooltip = () => {
-    if (!props.addTooltip) {
-      return null;
+    if (props.addTooltip) {
+      return tooltipPlugin.ui;
     }
-    return tooltipPlugin.ui;
+    if (ClampText.defaultProps.addTooltip) {
+      return tooltipPlugin.ui;
+    }
+    return null;
   };
 
   let emptySymbol = props.emptySymbol ?? "-";
@@ -80,6 +83,11 @@ let ClampText: FC<IClampTextProps> = React.memo((props) => {
     </div>
   );
 });
+
+ClampText.defaultProps = {
+  addTooltip: false,
+  lines: 1,
+};
 
 export default ClampText;
 
